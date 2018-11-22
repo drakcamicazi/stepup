@@ -19,9 +19,10 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
-from App.views import inicial
+from App.views import inicial,cadastro
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', inicial, name='url_index')
+    path('', inicial, name='url_index'),
+    path('cadastro/', cadastro, name='url_cadastro')
 ]
