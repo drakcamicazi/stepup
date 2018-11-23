@@ -83,9 +83,13 @@ class Participante(models.Model):
 
 class Trabalho(models.Model):
     titulo = models.CharField(max_length=200)
+    area = models.CharField(max_length=100)
+    modalidade = models.CharField(max_length=150)
+
     arquivo = models.FileField()
     autores = models.ManyToManyField(Participante)
-    status = models.CharField(max_length=50, choices=((1, 'Em Análise'), (2, 'Aprovado'), (3, 'Reprovado')))
+    apresentadores = models.ManyToManyField(Participante)
+    status = models.CharField(max_length=50, choices=((1, 'Em Avaliação'), (2, 'Aprovado'), (3, 'Não Aprovado')))
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)
 
     def __str__(self):
