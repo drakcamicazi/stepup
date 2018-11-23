@@ -19,9 +19,20 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
-from App.views import inicial
+from App.views import inicial,evento,atividade,visuevento,visuatividade,login,submissao,submeter,avaliacao,avaliar,gerencia,cadastro,certificado
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', inicial, name='url_index')
+    path('', evento, name='url_evento'),
+    path('atividade', atividade, name='url_atividade'),
+    path('certificado', certificado, name='url_certificado'),
+    path('visue', visuevento, name='url_visuevento'),
+    path('visua', visuatividade, name='url_visuatividade'),
+    path('login/', login, name='url_login'),
+    path('cadastro/', cadastro, name='url_cadastro'),
+    path('trabalhos/', submissao, name='url_submissao'),
+    path('envio_trabalho/', submeter, name='url_submeter'),
+    path('avaliar/', avaliar, name='url_avaliar'),
+    path('avaliacao/', avaliacao, name='url_avaliacao'),
+    path('gerencia/', gerencia, name='url_gerencia')
 ]

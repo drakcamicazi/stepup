@@ -1,0 +1,103 @@
+{% extends 'layout/layout.html' %}
+{% load staticfiles %}
+{% block top %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-11" style="margin-left:40px;">
+            <h4 class="font-weight-bold py-3 mb-4">
+                <span class="text-muted font-weight-light">StepUp /</span> Status Submissão
+            </h4>
+            <hr class="border-light container-m--x my-4">
+            <h5 class="text-muted ">
+                Trabalhos Submetidos
+            </h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-10 offset-1">
+            <div class="row">
+                <a href="{% url 'url_submeter' %}" class="col-2">
+                    <button type="button" class="btn btn-success btn-round d-block">
+                        <span class="ion ion-md-add"></span>&nbsp; Submeter
+                    </button>
+                </a>
+                <a href="{% url 'url_avaliar' %}" class="col-2">
+                    <button type="button" class="btn btn-primary btn-round d-block">
+                        <span class="ion ion-md-add"></span>&nbsp; Avaliar
+                    </button>
+                </a>
+                <a href="{% url 'url_avaliacao' %}" class="col-2">
+                    <button type="button" class="btn btn-secundary btn-round d-block">
+                        <span class="ion ion-md-add"></span>&nbsp; Avaliação
+                    </button>
+                </a>
+                <a href="{% url 'url_gerencia' %}" class="col-2">
+                    <button type="button" class="btn btn-dark btn-round d-block">
+                        <span class="ion ion-md-add"></span>&nbsp; Gerenciar
+                    </button>
+                </a>
+            </div>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Modalidade</th>
+                    <th>Area</th>
+                    <th>Atores</th>
+                    <th>Ver</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-active">
+                    <th scope="row">Excluido</th>
+                    <td>Mostra Extensão</td>
+                    <td>Inovação</td>
+                    <td>2 Autores</td>
+                    <td>Visualizar</td>
+                    <td>Excluir</td>
+                </tr>
+                <tr class="table-primary">
+                    <th scope="row">Em Avaliação</th>
+                    <td>Mostra Extensão</td>
+                    <td>Inovação</td>
+                    <td>2 Autores</td>
+                    <td>Visualizar</td>
+                    <td>Excluir</td>
+                </tr>
+                <tr class="table-success">
+                    <th scope="row">Aprovado</th>
+                    <td>Mostra Extensão</td>
+                    <td>Inovação</td>
+                    <td>2 Autores</td>
+                    <td>Visualizar</td>
+                    <td>Excluir</td>
+                </tr>
+                <tr class="table-danger">
+                    <th scope="row">Não Aprovado</th>
+                    <td>Mostra Extensão</td>
+                    <td>Inovação</td>
+                    <td>2 Autores</td>
+                    <td>Visualizar</td>
+                    <td>Excluir</td>
+                </tr>
+                <tr class="table-warning">
+                    <th scope="row">Revisão</th>
+                    <td>Mostra Extensão</td>
+                    <td>Inovação</td>
+                    <td>2 Autores</td>
+                    <td>Visualizar</td>
+                    <td>Excluir</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

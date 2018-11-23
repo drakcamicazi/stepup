@@ -1,0 +1,100 @@
+{% extends 'layout/layout.html' %}
+{% load staticfiles %}
+{% block top %}
+
+{% endblock %}
+
+{% block content %}
+<h4 class="font-weight-bold py-3 mb-4">
+    <span class="text-muted font-weight-light">StepUp /</span> Submissão de Trabalhos
+</h4>
+<div class="card mb-4">
+    <h6 class="card-header">
+        Formulário
+    </h6>
+    <div class="card-body">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label class="form-label">Titulo</label>
+                    <input type="text" class="form-control" placeholder="Titulo">
+                </div>
+
+
+                <div class="form-group col-md-4">
+                    <label class="form-label">Modalidade</label>
+                    <select class="custom-select">
+                        <option>Mostra Cientifica</option>
+                        <option>Mostra Extensão</option>
+                        <option>Mostra Pesquisa</option>
+                        <option>Startup</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Area</label>
+                    <select class="custom-select">
+                        <option>Extensão</option>
+                        <option>Pesquisa</option>
+                        <option>Startup</option>
+                    </select>
+                </div>
+                <!--<div class="form-group col-md-6">
+                <label class="form-label">Area</label>
+                <select class="custom-select">
+                  <option>Extensão</option>
+                  <option>Inovação</option>
+                </select>
+              </div>-->
+            </div>
+            <div class="form-group">
+                <label class="form-label w-100">Adicionar Trabalho</label>
+                <input type="file">
+                <small class="form-text text-muted">Selecione o arquivo do seu computador.</small>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="card mb-4">
+    <h6 class="card-header">
+        Autores
+    </h6>
+    <div class="card-body">
+        <form>
+            <div class="list-group col-md-6">
+                <label class="form-label">Adicionar Autor</label>
+                <input type="email" class="form-control" placeholder="CPF">
+            </div>
+            <br>
+            <div class="list-group col-md-6 ">
+                <a href="javascript:void(0)"
+                   class="list-group-item list-group-item-action media d-flex align-items-center">
+                    <img src="assets/img/avatars/4-small.png" class="d-block ui-w-40 rounded-circle" alt>
+                    <div class="media-body ml-3">
+                        <div class="text-dark line-height-condenced">Wallas Gibson</div>
+                        <div class="text-light small mt-1">
+                            waalasgb@gmail.com
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <br>
+            <h6>
+                Responsável pela apresentação
+            </h6>
+            <div class="form-group">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-label">Autor 1</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input">
+                    <span class="custom-control-label">Autor 2 </span>
+                </label>
+            </div>
+            <button type="submit" class="btn btn-success">Enviar Submissão</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
