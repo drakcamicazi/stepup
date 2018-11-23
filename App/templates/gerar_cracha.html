@@ -1,0 +1,50 @@
+                          {% extends 'layout/layout.html' %}
+{% load qr_tags %}
+{% block top %}
+    <h4 class="font-weight-bold py-3 mb-4">
+      Crachás
+      <div class="text-muted text-tiny mt-1">
+        <small class="font-weight-normal">Crachás do evento IV CONPEX</small>
+      </div>
+    </h4>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            {% for participante in participantes %}
+            <div class="col-3 cracha">
+                <h4>{{ participante.evento.nome }}</h4>
+                <p>{{ participante.usuario.nome }}</p>
+
+                <div class="qr">{% qr_from_text "{{ participante.pk }}" "S" %}</div>
+                <small>100{{ participante.pk }}</small>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+<style>
+    .container{
+        margin: 3em;
+    }
+
+    .cracha{
+        background-color: #ABCDEF;
+        min-height: 200px;
+        padding: 5%;
+        padding-top: 3%;
+        text-align: center;
+        margin: 0.5%;
+    }
+
+    .qr{
+        margin: auto;
+    }
+
+    .titulo{
+        margin-top: 5%;
+        margin-bottom: 10%;
+    }
+</style>
+{% endblock %}

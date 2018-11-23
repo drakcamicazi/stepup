@@ -77,7 +77,10 @@ class Participante(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     tipo = models.CharField(max_length=50, choices=TIPOS)
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)
-    atividades = models.ManyToManyField(Atividade)
+    atividades = models.ManyToManyField(Atividade, blank=True)
+
+    def __str__(self):
+        return self.tipo + ' ' + self.usuario.nome
 
 
 
@@ -87,8 +90,8 @@ class Trabalho(models.Model):
     modalidade = models.CharField(max_length=150)
 
     arquivo = models.FileField()
-    autores = models.ManyToManyField(Participante)
-    apresentadores = models.ManyToManyField(Participante)
+    autores = models.ManyToManyField(Participante, related_name='Autor')
+    apresentadores = models.ManyToManyField(Participante, related_name='Apresentador')
     status = models.CharField(max_length=50, choices=((1, 'Em Avaliação'), (2, 'Aprovado'), (3, 'Não Aprovado')))
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)
 

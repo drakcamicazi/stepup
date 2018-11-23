@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
-#from .form import PessoaForm
 
 # Create your views here.
+from App.models import Participante
+
+
 def inicial(request):
     return render(request, 'index.html')
 
@@ -40,3 +42,7 @@ def gerencia(request):
 
 def submeter(request):
     return render(request, 'submeter.html')
+
+def gerarCracha(request):
+    data = {'participantes': Participante.objects.all()}
+    return render(request, 'gerar_cracha.html', data)
