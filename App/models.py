@@ -87,8 +87,8 @@ class Trabalho(models.Model):
     modalidade = models.CharField(max_length=150)
 
     arquivo = models.FileField()
-    autores = models.ManyToManyField(Participante)
-    apresentadores = models.ManyToManyField(Participante)
+    autores = models.ManyToManyField(Participante, related_name='Autores')
+    apresentadores = models.ManyToManyField(Participante, related_name='Apresentadores')
     status = models.CharField(max_length=50, choices=((1, 'Em Avaliação'), (2, 'Aprovado'), (3, 'Não Aprovado')))
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)
 
