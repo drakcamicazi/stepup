@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-{% load static %}
+<!DOCTYPE html> {% load static %}
 <html lang="en" class="default-style">
 
 <head>
-    <title>Login v3 - Pages - Appwork</title>
+    <title>Login</title>
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
     <meta name="description" content="">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900"
-          rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'img/ifro-icone.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
 
     <!-- Icon fonts -->
     <link rel="stylesheet" href="{% static 'fonts/fontawesome.css' %}">
@@ -41,115 +38,113 @@
 </head>
 
 <body>
-<div class="page-loader">
-    <div class="bg-primary"></div>
-</div>
+    <div class="page-loader">
+        <div class="bg-primary"></div>
+    </div>
 
-<!-- Content -->
+    <!-- Content -->
 
-<div class="authentication-wrapper authentication-3">
-    <div class="authentication-inner">
+    <div class="authentication-wrapper authentication-3">
+        <div class="authentication-inner">
 
-        <!-- Side container -->
-        <!-- Do not display the container on extra small, small and medium screens -->
-        <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5"
-             style="background-image: url('https://www.dimt.it/images/background-2846221_960_720.jpg');">
-            <div class="ui-bg-overlay bg-dark opacity-65"></div>
+            <!-- Side container -->
+            <!-- Do not display the container on extra small, small and medium screens -->
+            <div class="d-none d-lg-flex col-lg-8 align-items-center ui-bg-cover ui-bg-overlay-container p-5" style="background-image: url('https://www.dimt.it/images/background-2846221_960_720.jpg');">
+                <div class="ui-bg-overlay bg-dark opacity-65"></div>
 
-            <!-- Text -->
-            <div class="w-100 text-white px-5">
-                <h1 class="display-2 font-weight-bolder mb-4"> Sua primeira vez aqui?</h1>
-                <div class="text-large font-weight-light">
-                    Caso aluno ou servidor, utilize os mesmos dados da rede do IFRO.
-                    <br>
-                    <br>
-                    Se faz parte da comunidade externa, <a href="{% url 'url_cadastro' %}">cadastre-se aqui.</a>
-                </div>
-            </div>
-            <!-- /.Text -->
-        </div>
-        <!-- / Side container -->
-
-        <!-- Form container -->
-        <div class="d-flex col-lg-4 align-items-center bg-white p-5">
-            <!-- Inner container -->
-            <!-- Have to add `.d-flex` to control width via `.col-*` classes -->
-            <div class="d-flex col-sm-7 col-md-5 col-lg-12 px-0 px-xl-4 mx-auto">
-                <div class="w-100">
-
-                    <!-- Logo -->
-                    <div class="d-flex justify-content-center align-items-center">
-                        <img src="{% static 'img/ifro-logo.png' %}" height="30%" width="70%">
+                <!-- Text -->
+                <div class="w-100 text-white px-5">
+                    <h1 class="display-2 font-weight-bolder mb-4"> Sua primeira vez aqui?</h1>
+                    <div class="text-large font-weight-light">
+                        Caso aluno ou servidor, utilize os mesmos dados da rede do IFRO.
+                        <br>
+                        <br> Se faz parte da comunidade externa, <a href="{% url 'url_cadastro' %}">cadastre-se aqui.</a>
                     </div>
-                    <!-- / Logo -->
+                </div>
+                <!-- /.Text -->
+            </div>
+            <!-- / Side container -->
 
-                    <h4 class="text-center text-lighter font-weight-normal mt-5 mb-0">Acesse sua conta</h4>
+            <!-- Form container -->
+            <div class="d-flex col-lg-4 align-items-center bg-white p-5">
+                <!-- Inner container -->
+                <!-- Have to add `.d-flex` to control width via `.col-*` classes -->
+                <div class="d-flex col-sm-7 col-md-5 col-lg-12 px-0 px-xl-4 mx-auto">
+                    <div class="w-100">
 
-                    <!-- Form -->
-                    <form class="my-5">
-                        <div class="form-group">
-                            <label class="form-label">Login</label>
-                            <input type="text" class="form-control">
+                        <!-- Logo -->
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="{% static 'img/ifro-logo.png' %}" height="30%" width="70%">
                         </div>
-                        <div class="form-group">
-                            <label class="form-label d-flex justify-content-between align-items-end">
+                        <!-- / Logo -->
+
+                        <h4 class="text-center text-lighter font-weight-normal mt-5 mb-0">Acesse sua conta</h4>
+
+                        <!-- Form -->
+                        <form class="my-5">
+                            <div class="form-group">
+                                <label class="form-label">Login</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label d-flex justify-content-between align-items-end">
                                 <div>Senha</div>
                                 <a href="https://auth.ifro.edu.br/password/reset" class="d-block small">Esqueceu sua
                                     senha?</a>
                             </label>
-                            <input type="password" class="form-control">
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center m-0">
-                            <label class="custom-control custom-checkbox m-0">
+                                <input type="password" class="form-control">
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center m-0">
+                                <label class="custom-control custom-checkbox m-0">
                                 <input type="checkbox" class="custom-control-input">
                             </label>
-                            <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'url_evento' %}';">Entrar</button>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'url_evento' %}';" style="background: #71C837">Entrar</button>
+                            </div>
+                        </form>
+                        <!-- / Form -->
+
+                        <div class="text-center text-muted">
+                            Não é aluno/servidor do IFRO?
+                            <a href="{% url 'url_cadastro' %}">Cadastre-se!</a>
                         </div>
-                    </form>
-                    <!-- / Form -->
 
-                    <div class="text-center text-muted">
-                        Não é aluno/servidor do IFRO?
-                        <a href="{% url 'url_cadastro' %}">Cadastre-se!</a>
                     </div>
-
                 </div>
             </div>
+            <!-- / Form container -->
+
         </div>
-        <!-- / Form container -->
-
     </div>
-</div>
 
-<!-- / Content -->
+    <!-- / Content -->
 
-<!-- Core scripts -->
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'vendor/js/bootstrap.js' %}"></script>
-<script src="{% static 'vendor/js/sidenav.js' %}"></script>
+    <!-- Core scripts -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/js/bootstrap.js' %}"></script>
+    <script src="{% static 'vendor/js/sidenav.js' %}"></script>
 
-<!-- Libs -->
-<script src="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
-<script src="{% static 'vendor/libs/chartjs/chartjs.js' %}"></script>
+    <!-- Libs -->
+    <script src="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'vendor/libs/chartjs/chartjs.js' %}"></script>
 
-<!-- Demo -->
-<script src="{% static 'js/demo.js' %}"></script>
-<style>
-    .authentication-inner{
-        display:flex;
-        height:5px
-    }
-</style>
-<script>
-    $(document).ready(function(){
-        var e =$(window).height();
-        $(" .authentication-inner").css("height",e);
-        $(window).resize(function(){
-            var e =$(window).height();
-            $(" .authentication-inner").css("height",e);
+    <!-- Demo -->
+    <script src="{% static 'js/demo.js' %}"></script>
+    <style>
+        .authentication-inner {
+            display: flex;
+            height: 5px
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            var e = $(window).height();
+            $(" .authentication-inner").css("height", e);
+            $(window).resize(function() {
+                var e = $(window).height();
+                $(" .authentication-inner").css("height", e);
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 

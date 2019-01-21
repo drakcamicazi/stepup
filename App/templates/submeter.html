@@ -1,17 +1,14 @@
-{% extends 'layout/layout.html' %}
-{% load staticfiles %}
-{% block top %}
-
-{% endblock %}
-
-{% block content %}
+{% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
+<title>Submissão de trabalho</title>
+{% endblock %} {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <h4 class="font-weight-bold py-3 mb-4 col-10 offset-1">
-            <span class="text-muted font-weight-light">StepUp /</span> Submissão de Trabalhos
-        </h4>
+    <div class="row m-1">
+        <div class="col-12" style="margin-left:40px;">
+            <h4>Submissão de trabalho</h4>
+            <hr class="border-light container-m--x my-2" style="width: calc(100% - 15px)">
+        </div>
     </div>
-    <div class="row">
+    <div class="row m-4">
         <div class="col-12">
             <div class="card mb-4">
                 <h6 class="card-header">
@@ -43,17 +40,17 @@
                                     <option>Startup</option>
                                 </select>
                             </div>
-                            <!--<div class="form-group col-md-6">
-                            <label class="form-label">Area</label>
-                            <select class="custom-select">
+                            <!-- <div class="form-group col-md-6">
+                                <label class="form-label">Area</label>
+                                <select class="custom-select">
                               <option>Extensão</option>
                               <option>Inovação</option>
                             </select>
-                          </div>-->
+                            </div> -->
                         </div>
                         <div class="form-group">
                             <label class="form-label w-100">Adicionar Trabalho</label>
-                            <input type="file">
+                            <input type="file" class="m-2">
                             <small class="form-text text-muted">Selecione o arquivo do seu computador.</small>
                         </div>
                     </form>
@@ -71,8 +68,7 @@
                         </div>
                         <br>
                         <div class="list-group col-md-6 ">
-                            <a href="javascript:void(0)"
-                               class="list-group-item list-group-item-action media d-flex align-items-center">
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action media d-flex align-items-center">
                                 <img src="assets/img/avatars/4-small.png" class="d-block ui-w-40 rounded-circle" alt>
                                 <div class="media-body ml-3">
                                     <div class="text-dark line-height-condenced">Wallas Gibson</div>

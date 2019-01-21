@@ -1,72 +1,60 @@
-{% extends 'layout/layout.html' %}
-{% load staticfiles %}
-{% block top %}
-
-{% endblock %}
-
-{% block content %}
+{% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
+<title>Certificados</title>
+{% endblock %} {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-11" style="margin-left:40px;">
+    <div class="row m-1">
+        <div class="col-12" style="margin-left:40px;">
             <h4>Meus Certificados</h4>
-            <hr class="border-light container-m--x my-4">
-
+            <hr class="border-light container-m--x my-2" style="width: calc(100% - 30px)">
         </div>
     </div>
-    <div class="row">
-        <div class="col-10 offset-1">
-            <br>
+    <div class="row m-4">
+        <div class="col-12">
             <table class="table">
                 <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Evento</th>
-                    <th scope="col">Ações</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Evento</th>
+                        <th scope="col">Ações</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">Participação no evento</th>
-                    <td>VI Congresso de Ensino, Pesquisa e Extensão</td>
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-primary" type="button" data-toggle="modal"
-                                    data-target="#modals-default">Visualizar
+                    <tr>
+                        <th scope="row">Participação no evento</th>
+                        <td>VI Congresso de Ensino, Pesquisa e Extensão</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modals-default">Visualizar
                             </button>
-                            <button class="btn btn-secondary"
-                                    onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
+                                <button class="btn btn-secondary" onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
                             </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Submissão do trabalho "Reaproveitamento de restos de curtimento"</th>
-                    <td>VI Congresso de Ensino, Pesquisa e Extensão</td>
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-primary" type="button" data-toggle="modal"
-                                    data-target="#modals-default">Visualizar
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Submissão do trabalho "Reaproveitamento de restos de curtimento"</th>
+                        <td>VI Congresso de Ensino, Pesquisa e Extensão</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modals-default">Visualizar
                             </button>
-                            <button class="btn btn-secondary"
-                                    onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
+                                <button class="btn btn-secondary" onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
                             </button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Presença na palestra "Diversidade Religiosa"</th>
-                    <td>VI Congresso de Ensino, Pesquisa e Extensão</td>
-                    <td>
-                        <div class="btn-group btn-group-sm">
-                            <button class="btn btn-primary" type="button" data-toggle="modal"
-                                    data-target="#modals-default">Visualizar
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Presença na palestra "Diversidade Religiosa"</th>
+                        <td>VI Congresso de Ensino, Pesquisa e Extensão</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modals-default">Visualizar
                             </button>
-                            <button class="btn btn-secondary"
-                                    onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
+                                <button class="btn btn-secondary" onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
                             </button>
-                        </div>
-                    </td>
-                </tr>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="layout-overlay layout-sidenav-toggle"></div>
@@ -84,8 +72,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary"
-                                    onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='{% static 'img/certificado.jpg' %}'">Baixar
                             </button>
                         </div>
                     </div>
@@ -94,6 +81,4 @@
         </div>
     </div>
 </div>
-</div>
-
 {% endblock %}

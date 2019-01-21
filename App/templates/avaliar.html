@@ -1,28 +1,21 @@
-{% extends 'layout/layout.html' %}
-{% load staticfiles %}
-{% block top %}
-
-{% endblock %}
-
-{% block content %}
+{% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
+<title>Avaliar trabalho</title>
+{% endblock %} {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-10 offset-1">
-            <h4 class="font-weight-bold py-3 mb-4">
-                Trabalho #34564
-            </h4>
+    <div class="row m-1">
+        <div class="col-12" style="margin-left:40px;">
+            <h4>Trabalho 31#34564</h4>
+            <hr class="border-light container-m--x my-2" style="width: calc(100% - 15px)">
         </div>
     </div>
-    <div class="row">
-        <div class="col-10 offset-1">
+    <div class="row m-4">
+        <div class="col-12">
             <div class="card">
                 <!-- Ticket -->
                 <div class="card-body">
-
                     <!-- Header -->
                     <div class="row no-gutters">
                         <div class="col-sm-6 col-md-8 col-lg-7 col-xl-8">
-
                             <!-- Author -->
                             <div class="media align-items-center mb-4">
                                 <img src="{% static 'img/avatars/4-small.png' %}" alt="" class="d-block ui-w-50 rounded-circle">
@@ -33,16 +26,15 @@
                                     <div class="text-muted small">Wallas</div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-5 col-xl-4">
-
                             <!-- Dates -->
                             <div class="row no-gutters row-bordered row-border-light ui-bordered mb-4">
                                 <div class="col py-1 px-3">
                                     <div class="text-muted small">Data de Envio</div>
                                     <div class="font-weight-semibold">04/24/2017</div>
-                                </div><!--
+                                </div>
+                                <!--
                       <div class="col py-1 px-3">
                         <div class="text-muted small">Last update</div>
                         <div class="font-weight-semibold">01/27/2018</div>
@@ -52,17 +44,14 @@
                         </div>
                     </div>
                     <!-- / Header -->
-
                     <div class="ui-bordered px-3 pt-3">
                         <label class="form-label">Arquivo</label>
                         <div class="clearfix">
                             <div class="ui-feed-icon-container float-left pt-2 mr-3 mb-3">
-                                <a href="javascript:void(0)"
-                                   class="ui-icon ui-feed-icon ion ion-md-close bg-secondary text-white"></a>
+                                <a href="javascript:void(0)" class="ui-icon ui-feed-icon ion ion-md-close bg-secondary text-white"></a>
                                 <a href="javascript:void(0)" class="ticket-file bg-light text-muted font-weight-bold">PDF</a>
                             </div>
-                            <a data-toggle="modal" data-target="#ticket-upload-modal" href="javascript:void(0)"
-                               class="ticket-file-add float-left bg-lighter text-muted mt-2 mb-3">
+                            <a data-toggle="modal" data-target="#ticket-upload-modal" href="javascript:void(0)" class="ticket-file-add float-left bg-lighter text-muted mt-2 mb-3">
                                 <span class="ion ion-md-add"></span>
                             </a>
                         </div>
@@ -79,9 +68,7 @@
                     </div>
                 </div>
                 <!-- / Ticket -->
-
                 <hr class="border-light m-0">
-
                 <!-- Ticket settings -->
                 <div class="card-body">
 
@@ -105,23 +92,16 @@
                         <textarea class="form-control" rows="5"></textarea>
                     </div>
                 </div>
-
-
-                <!-- / Ticket settings -->
-
                 <!-- Footer -->
                 <div class="card-footer">
-
                     <button type="button" class="btn btn-primary mr-2">Salvar</button>
                     <!--<button type="button" class="btn btn-default">Cancel</button>-->
                     <!--  <button type="button" class="btn btn-outline-danger icon-btn borderless float-right">
                         <span class="ion ion-md-trash"></span>
                       </button>-->
-
                 </div>
                 <!-- Footer -->
             </div>
-
             <!-- Attach files modal -->
             <div class="modal modal-top fade" id="ticket-upload-modal">
                 <div class="modal-dialog modal-lg">
@@ -133,8 +113,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
                         </div>
                         <div class="modal-body">
-                            <form action="http://posttestserver.com/post.php" class="dropzone needsclick"
-                                  id="ticket-upload-dropzone">
+                            <form action="http://posttestserver.com/post.php" class="dropzone needsclick" id="ticket-upload-dropzone">
                                 <div class="dz-message needsclick">
                                     Drop files here or click to upload
                                 </div>

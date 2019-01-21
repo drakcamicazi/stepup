@@ -1,60 +1,64 @@
-{% extends 'layout/layout.html' %}
-{% load staticfiles %}
-{% block top %}
+{% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
+<title>Eventos</title>
+{% endblock %} {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12" style="margin-left:40px;">
+            <h4>Eventos</h4>
+            <hr class="border-light container-m--x my-2" style="width: calc(100% - 30px)">
+        </div>
+    </div>
+    <div class="row m-4">
+        <div class="col-12">
+            <div class="table-responsive ui-bordered">
+                <table class="clients-table table table-hover m-0">
+                    <tbody>
+                        <tr>
+                            <td class="align-middle py-3">
+                                <div class="media align-items-center">
+                                    <!-- <img src="../static/img/avatars/1.png" class="d-block ui-w-60 rounded-circle" alt=""> -->
+                                    <img src="https://even3.blob.core.windows.net/logos/logoDAYSOFTWARE.112c16c860cf405f88aa.jpg" class="d-block ui-w-60 rounded" alt="">
+                                    <div class="media-body flex-basis-auto pl-3">
+                                        <div><a href="{% url 'url_visuevento' %}">5° Mostra de Software</a></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle py-3">
+                                Campus Ji-Paraná
+                            </td>
+                            <td class="align-middle py-3">
+                                23/11/2018
+                                <br> 24/11/2018
+                            </td>
+                            <td class="align-middle py-3">
+                                <span class="badge badge-success">Inscrições Abertas</span>
+                            </td>
+                        </tr>
 
-{% endblock %}
-
-{% block content %}
-<h4 class="d-flex flex-wrap justify-content-between align-items-center font-weight-bold pt-1 mb-1"
-    style="margin-left:44px">
-    <div class="mb-2">Eventos</div>
-</h4>
-<div class="table-responsive ui-bordered m-4">
-    <table class="clients-table table table-hover m-0">
-        <tbody>
-        <tr>
-            <td class="align-middle py-3">
-                <div class="media align-items-center">
-                    <!-- <img src="../static/img/avatars/1.png" class="d-block ui-w-60 rounded-circle" alt=""> -->
-                    <img src="https://even3.blob.core.windows.net/logos/logoDAYSOFTWARE.112c16c860cf405f88aa.jpg" class="d-block ui-w-60 rounded" alt="">
-                    <div class="media-body flex-basis-auto pl-3">
-                        <div><a href="{% url 'url_visuevento' %}">5° Mostra de Software</a></div>
-                    </div>
-                </div>
-            </td>
-            <td class="align-middle py-3">
-                Campus Ji-Paraná
-            </td>
-            <td class="align-middle py-3">
-                23/11/2018
-                <br> 24/11/2018
-            </td>
-            <td class="align-middle py-3">
-                <span class="badge badge-success">Inscrições Abertas</span>
-            </td>
-        </tr>
-
-        <tr class="bg-light">
-            <td class="align-middle py-3">
-                <div class="media align-items-center">
-                    <img src="https://even3.blob.core.windows.net/logos/logo_ifro.6b7b7868bbe9423b9272.png" class="d-block ui-w-60 rounded" alt="">
-                    <div class="media-body flex-basis-auto pl-3">
-                        <div><a href="{% url 'url_visuevento' %}">VII Congresso de Agronomia</a></div>
-                    </div>
-                </div>
-            </td>
-            <td class="align-middle py-3">
-                Campus Colorado
-            </td>
-            <td class="align-middle py-3">
-                29/10/2018
-                <br> 02/11/2018
-            </td>
-            <td class="align-middle py-3">
-                <span class="badge badge-success"></span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                        <tr class="bg-light">
+                            <td class="align-middle py-3">
+                                <div class="media align-items-center">
+                                    <img src="https://even3.blob.core.windows.net/logos/logo_ifro.6b7b7868bbe9423b9272.png" class="d-block ui-w-60 rounded" alt="">
+                                    <div class="media-body flex-basis-auto pl-3">
+                                        <div><a href="{% url 'url_visuevento' %}">VII Congresso de Agronomia</a></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle py-3">
+                                Campus Colorado
+                            </td>
+                            <td class="align-middle py-3">
+                                29/10/2018
+                                <br> 02/11/2018
+                            </td>
+                            <td class="align-middle py-3">
+                                <span class="badge badge-success"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
