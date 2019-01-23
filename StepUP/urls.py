@@ -24,12 +24,12 @@ from App.views import inicial, evento, atividade, visuevento, visuatividade, log
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', evento, name='url_evento'),
-    path('atividade', atividade, name='url_atividade'),
-    path('certificado', certificado, name='url_certificado'),
-    path('visue', visuevento, name='url_visuevento'),
-    path('visua', visuatividade, name='url_visuatividade'),
-    path('login/', login, name='url_login'),
+    path('eventos/', evento, name='url_evento'),
+    path('atividade/', atividade, name='url_atividade'),
+    path('certificado/', certificado, name='url_certificado'),
+    path('visue/', visuevento, name='url_visuevento'),
+    path('visua/', visuatividade, name='url_visuatividade'),
+    path('', login, name='url_login'),
     path('cadastro/', cadastro, name='url_cadastro'),
     path('trabalhos/', submissao, name='url_submissao'),
     path('envio_trabalho/', submeter, name='url_submeter'),

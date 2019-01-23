@@ -80,7 +80,7 @@ class Participante(models.Model):
     atividades = models.ManyToManyField(Atividade, blank=True)
 
     def __str__(self):
-        return self.tipo + ' ' + self.usuario.nome
+        return self.tipo + ' ' + self.usuario.attname
 
 
 

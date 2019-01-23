@@ -4,46 +4,40 @@
 <div class="container-fluid">
     <div class="row m-1">
         <div class="col-12" style="margin-left:40px;">
-            <h4>Trabalho 31#34564</h4>
+            <h4>VII Day Software - Trabalho#323</h4>
             <hr class="border-light container-m--x my-2" style="width: calc(100% - 15px)">
         </div>
     </div>
     <div class="row m-4">
         <div class="col-12">
+            <!-- Container principal -->
             <div class="card">
-                <!-- Ticket -->
                 <div class="card-body">
-                    <!-- Header -->
                     <div class="row no-gutters">
                         <div class="col-sm-6 col-md-8 col-lg-7 col-xl-8">
-                            <!-- Author -->
                             <div class="media align-items-center mb-4">
+                                <!-- Imagen do auto do trabalho -->
                                 <img src="{% static 'img/avatars/4-small.png' %}" alt="" class="d-block ui-w-50 rounded-circle">
                                 <div class="media-body ml-3">
                                     <h5 class="mb-1">
+                                        <!-- Nome do trabalho -->
                                         <a href="javascript:void(0)" class="text-dark">PS ATOM </a>
                                     </h5>
+                                    <!-- Nome do autor do trabalho -->
                                     <div class="text-muted small">Wallas</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-5 col-xl-4">
-                            <!-- Dates -->
                             <div class="row no-gutters row-bordered row-border-light ui-bordered mb-4">
                                 <div class="col py-1 px-3">
                                     <div class="text-muted small">Data de Envio</div>
+                                    <!-- Data de envio do trabalho -->
                                     <div class="font-weight-semibold">04/24/2017</div>
                                 </div>
-                                <!--
-                      <div class="col py-1 px-3">
-                        <div class="text-muted small">Last update</div>
-                        <div class="font-weight-semibold">01/27/2018</div>
-                      </div>-->
                             </div>
-
                         </div>
                     </div>
-                    <!-- / Header -->
                     <div class="ui-bordered px-3 pt-3">
                         <label class="form-label">Arquivo</label>
                         <div class="clearfix">
@@ -57,70 +51,65 @@
                         </div>
                     </div>
                     <br>
-                    <div class="form-group">
-                        <label class="form-label">Modalidade</label>
-                        <input type="text" class="form-control" value=" Mostra Extenção">
+                    <div class="form-group ">
+                        <div class="form-row">
+                            <div class="col-sm-6">
+                                <label class="form-label">Modalidade</label>
+                                <input type="text" class="form-control" value=" Mostra Extenção" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Area</label>
+                                <input type="text" class="form-control" value=" Extenção" />
+                            </div>
+                        </div>
                     </div>
-                    <br>
+                    <hr class="border-light">
                     <div class="form-group">
-                        <label class="form-label">Area</label>
-                        <input type="text" class="form-control" value=" Extenção">
-                    </div>
-                </div>
-                <!-- / Ticket -->
-                <hr class="border-light m-0">
-                <!-- Ticket settings -->
-                <div class="card-body">
-
-                    <div class="form-row">
-                        <div class="col-sm-6">
-
-                            <div class="form-group">
-                                <label class="form-label">Avaliar</label>
-                                <select class="custom-select ">
+                        <div class="form-row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="form-label">Avaliar</label>
+                                    <select class="custom-select">
                                     <option selected>Selecione</option>
                                     <option>Recusado</option>
                                     <option>Aprovado</option>
                                     <option>Revisão</option>
                                 </select>
+                                </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Descrição</label>
+                            <textarea class="form-control bg-lighter" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <!-- Botões de Salvar e Cancelar -->
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-primary mr-2">Salvar</button>
+                        <a href="{% url 'url_submissao' %}"><button type="button" class="btn btn-default">Cancelar</button></a>
+                    </div>
+                </div>
 
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Description</label>
-                        <textarea class="form-control" rows="5"></textarea>
-                    </div>
-                </div>
-                <!-- Footer -->
-                <div class="card-footer">
-                    <button type="button" class="btn btn-primary mr-2">Salvar</button>
-                    <!--<button type="button" class="btn btn-default">Cancel</button>-->
-                    <!--  <button type="button" class="btn btn-outline-danger icon-btn borderless float-right">
-                        <span class="ion ion-md-trash"></span>
-                      </button>-->
-                </div>
-                <!-- Footer -->
-            </div>
-            <!-- Attach files modal -->
-            <div class="modal modal-top fade" id="ticket-upload-modal">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">
-                                Attach files to ticket
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="http://posttestserver.com/post.php" class="dropzone needsclick" id="ticket-upload-dropzone">
-                                <div class="dz-message needsclick">
-                                    Drop files here or click to upload
-                                </div>
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple>
-                                </div>
-                            </form>
+                <!-- OverLay de anexo -->
+                <div class="modal modal-top fade" id="ticket-upload-modal">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    Anexar arquivo
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="http://posttestserver.com/post.php" class="dropzone needsclick" id="ticket-upload-dropzone">
+                                    <div class="dz-message needsclick">
+                                        CLique e selecione o arquivo
+                                    </div>
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
