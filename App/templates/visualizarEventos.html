@@ -1,14 +1,15 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>VII Day Software - IFRO</title>
 {% endblock %} {% block content %}
-<div class="container-fluid">
+<div class="container-fluid pl-5 pr-5">
     <div class="row">
-        <div class="col-12 ml-5">
+        <div class="col-12 ml-2 mb-3">
             <div id="banner" class="bannerEvento"></div>
             <style>
                 div.bannerEvento {
+                    cursor: pointer;
                     height: 160px;
-                    width: 90%;
+                    width: 100%;
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -21,7 +22,7 @@
                 
                 div.bannerEvento.revelar {
                     margin-bottom: 2px;
-                    height: 400px;
+                    height: 60vh;
                     transition: all .4s ease-in-out;
                 }
             </style>
@@ -32,6 +33,7 @@
                     });
                 });
             </script>
+            <br>
             <h4 class="font-weight-bold py-6 mb-3 mt-2">
                 VII Day Software - IFRO
                 <div class="text-muted text-tiny mt-2">
@@ -42,22 +44,21 @@
                     <small class="font-weight-normal" style="margin-left:30px">Horario de Inicio: 20:00</small>
                 </div>
             </h4>
-            <hr class="border-light container-m--x my-2" style="width: calc(100% - 50px)">
+            <hr class="border-light container-m--x my-2">
         </div>
     </div>
     <div class="row">
-        <div class="col-5 offset-1 bg-white rounded">
-            <h4 class="font-weight-bold m-4">Sobre</h4>
+        <div class="col-6 bg-white rounded pt-4">
+            <h4 class="font-weight-bold ml-3">Sobre</h4>
             <p class="lead m-4 text-justify">Este é, frequentemente, o início do diálogo travado entre paciente e médico na primeira consulta com o geriatra. O paciente deseja ‘iniciar sua prevenção’, expressão que traz implícitas a pergunta sobre o que cabe a ele fazer para viver uma
                 vida longa e produtiva e a expectativa sobre o que o médico lhe dirá. Comumente, ele espera que sejam solicitados exames e que sejam prescritos vários medicamentos, sobretudo vitaminas, com o propósito de prevenir ou de retardar o envelhecimento.
                 Mas, qual o real papel do geriatra para ajudar o paciente a viver mais e melhor?</p>
         </div>
-        <div class="col-5 bg-white rounded" style="padding-top:33px">
+        <div class="col-6 bg-white rounded pt-4">
             <h4 class="font-weight-bold">Organizadores</h4>
             <div class="row">
                 <div class="col-2">
-                    <!-- <img src="http://secure.gravatar.com/avatar/2651baadd0dd9164036c67b976a24f9d?d=http://www.html5gamedevs.com/uploads/monthly_2017_09/K.png.5cb1c681ad5425a383e6d59cc8a3b589.png" alt class="d-block ui-w-20 rounded-circle"> -->
-                    <img src="../static/img/avatars/1.png" alt class="d-block ui-w-60 rounded-circle">
+                    <img src="{% static 'img/avatars/1.png' %}" alt class="d-block ui-w-60 rounded-circle">
                 </div>
                 <div class="col-10">
                     <h5>Fulano de tal silva</h5>
@@ -68,7 +69,7 @@
             <hr>
             <div class="row ">
                 <div class="col-2 ">
-                    <img src="../static/img/avatars/1.png " alt class="d-block ui-w-60 rounded-circle ">
+                    <img src="{% static 'img/avatars/1.png' %}" alt class="d-block ui-w-60 rounded-circle ">
                 </div>
                 <div class="col-10 ">
                     <h5>Taulano oliveira</h5>
@@ -78,13 +79,14 @@
             </div>
         </div>
     </div>
-    <div class="row m-5 ">
+    <br>
+    <div class="row">
         <div class="col-12 ">
-            <h4 class="font-weight-bold ">Atividades em alta</h4>
-            <hr>
+            <h4 class="font-weight-bold ml-3">Atividades em alta</h4>
+            <hr class="border-light container-m--x my-2 ml-2 mr-2">
         </div>
     </div>
-    <div class="row m-5 ">
+    <div class="row mt-3">
         <div class="col-sm-6 col-xl-4 ">
 
             <div class="card mb-4 ">

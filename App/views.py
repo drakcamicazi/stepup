@@ -25,6 +25,9 @@ def visuevento(request):
 def atividade(request):
     return render(request, 'atividades.html')
 
+def criarativi(request):
+    return render(request, 'nova_atividade.html')
+
 def visuatividade(request):
     return render(request, 'visualizarAtividade.html')
 

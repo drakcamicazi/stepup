@@ -20,7 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
 from App.views import inicial, evento, atividade, visuevento, visuatividade, login, submissao, submeter, avaliacao, \
-    avaliar, gerencia, cadastro, certificado, gerarCracha
+    avaliar, gerencia, cadastro, certificado, gerarCracha,criarativi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,5 +36,6 @@ urlpatterns = [
     path('avaliar/', avaliar, name='url_avaliar'),
     path('avaliacao/', avaliacao, name='url_avaliacao'),
     path('gerencia/', gerencia, name='url_gerencia'),
-    path('cracha/', gerarCracha, name='url_cracha')
+    path('cracha/', gerarCracha, name='url_cracha'),
+    path('criar_atividade/', criarativi, name='url_criarativi')
 ]

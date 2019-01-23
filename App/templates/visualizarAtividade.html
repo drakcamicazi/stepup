@@ -1,8 +1,8 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>Palestra: Prevenção as drogas</title>
 {% endblock %} {% block content %}
-<div class="container-fluid">
-    <div class="row ml-4">
+<div class="container-fluid pl-5 pr-5">
+    <div class="row m">
         <h4 class="font-weight-bold py-6 mb-3 m-4">
             Palestra: Prevenção as drogas
             <div class="text-muted text-tiny mt-2">
@@ -14,18 +14,18 @@
         </h4>
     </div>
     <div class="row">
-        <div class="col-5 offset-1 bg-white">
-            <h4 class="font-weight-bold mt-4">Sobre</h4>
+        <div class="col-6  bg-white">
+            <h4 class="font-weight-bold mt-4 ml-4">Sobre</h4>
             <p class="lead m-4 text-justify">Este é, frequentemente, o início do diálogo travado entre paciente e médico na primeira consulta com o geriatra. O paciente deseja ‘iniciar sua prevenção’, expressão que traz implícitas a pergunta sobre o que cabe a ele fazer para viver uma
                 vida longa e produtiva e a expectativa sobre o que o médico lhe dirá. Comumente, ele espera que sejam solicitados exames e que sejam prescritos vários medicamentos, sobretudo vitaminas, com o propósito de prevenir ou de retardar o envelhecimento.
                 Mas, qual o real papel do geriatra para ajudar o paciente a viver mais e melhor?</p>
         </div>
-        <div class="col-5 bg-white">
-            <h4 class="font-weight-bold m-4">Apresentadores</h4>
+        <div class="col-6 bg-white">
+            <h4 class="font-weight-bold  mt-4 ml-1">Apresentadores</h4>
             <div class="row">
                 <div class="col-2">
                     <!-- <img src="http://secure.gravatar.com/avatar/2651baadd0dd9164036c67b976a24f9d?d=http://www.html5gamedevs.com/uploads/monthly_2017_09/K.png.5cb1c681ad5425a383e6d59cc8a3b589.png" alt class="d-block ui-w-20 rounded-circle"> -->
-                    <img src="../static/img/avatars/1.png" alt class="d-block ui-w-60 rounded-circle">
+                    <img src="{% static 'img/avatars/1.png' %}" alt class="d-block ui-w-60 rounded-circle">
                 </div>
                 <div class="col-10">
                     <h5>Fulano de tal silva</h5>
@@ -37,7 +37,7 @@
             <hr>
             <div class="row">
                 <div class="col-2">
-                    <img src="../static/img/avatars/1.png" alt class="d-block ui-w-60 rounded-circle">
+                    <img src="{% static 'img/avatars/1.png' %}" alt class="d-block ui-w-60 rounded-circle">
                 </div>
                 <div class="col-10">
                     <h5>Taulano oliveira</h5>
