@@ -2,10 +2,15 @@ from django.db import models
 
 
 class Usuario(models.Model):
+    SEXO= (
+        ('F', 'Femenino'),
+        ('M', 'Masculino'),
+    )
     nome = models.CharField(max_length=200)
     cpf = models.CharField(unique=True, max_length=14)
     senha = models.CharField(max_length=50)
     email = models.EmailField()
+    sexo = models.CharField(max_length=9,choices=SEXO,null=True)
 
     def __str__(self):
         return self.nome

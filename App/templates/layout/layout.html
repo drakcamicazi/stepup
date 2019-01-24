@@ -35,6 +35,38 @@
     <!-- Libs -->
     <link rel="stylesheet" href="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}">
 
+    <!-- Extra css -->
+    <style>
+        div#layout-sidenav div.app-brand a.app-brand-text {
+            margin-left: 20px;
+        }
+        
+        html.layout-expanded body div.layout-wrapper div.layout-inner div#layout-sidenav div.app-brand img,
+        html.default-style body div.layout-wrapper div.layout-inner div#layout-sidenav div.app-brand img {
+            margin-left: 0px;
+        }
+        
+        html.layout-collapsed body div.layout-wrapper div.layout-inner div#layout-sidenav div.app-brand img {
+            margin-left: 15px;
+        }
+        
+        html.layout-collapsed body div.layout-wrapper div.layout-inner div#layout-sidenav:hover div.app-brand img {
+            margin-left: 0px;
+        }
+        
+        div.ident,
+        p.ident {
+            text-indent: 2rem
+        }
+        
+        @media(max-width: 991px) {
+            a#nav-toggle {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -57,24 +89,6 @@
                     <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                         <i class="ion ion-md-menu align-middle"></i>
                     </a>
-                    <style>
-                        div#layout-sidenav div.app-brand a.app-brand-text {
-                            margin-left: 20px;
-                        }
-                        
-                        html.layout-expanded body div.layout-wrapper div.layout-inner div#layout-sidenav div.app-brand img,
-                        html.default-style body div.layout-wrapper div.layout-inner div#layout-sidenav div.app-brand img {
-                            margin-left: 0px;
-                        }
-                        
-                        html.layout-collapsed body div.layout-wrapper div.layout-inner div#layout-sidenav div.app-brand img {
-                            margin-left: 15px;
-                        }
-                        
-                        html.layout-collapsed body div.layout-wrapper div.layout-inner div#layout-sidenav:hover div.app-brand img {
-                            margin-left: 0px;
-                        }
-                    </style>
                 </div>
 
                 <div class="sidenav-divider mt-0"></div>
@@ -126,14 +140,6 @@
                         <img src="{% static 'img/ifro-logo.png' %}" width="40px" height="40px" style="border-radius:50% ">
                         <span class="app-brand-text demo font-weight-normal ml-2">IFRO</span>
                     </a>
-                    <style>
-                        @media(max-width: 991px) {
-                            a#nav-toggle {
-                                display: flex;
-                                flex-direction: row;
-                            }
-                        }
-                    </style>
 
                     <!-- Sidenav toggle (see assets/css/demo/demo.css) -->
                     <div class="layout-sidenav-toggle navbar-nav d-lg-none align-items-lg-center mr-auto">
@@ -149,16 +155,6 @@
                     <div class="navbar-collapse collapse" id="layout-navbar-collapse">
                         <!-- Divider -->
                         <hr class="d-lg-none w-100 my-2">
-
-                        <!-- <div class="navbar-nav align-items-lg-center">
-                        <-- Search ->
-                        <label class="nav-item navbar-text navbar-search-box p-0 active">
-                            <i class="ion ion-ios-search navbar-icon align-middle"></i>
-                            <span class="navbar-search-input pl-2">
-                  <input type="text" class="form-control navbar-text mx-2" placeholder="Search..." style="width:200px">
-                </span>
-                        </label>
-                    </div> -->
 
                         <div class="navbar-nav align-items-lg-center ml-auto">
                             <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
