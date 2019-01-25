@@ -1,0 +1,102 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en" class="default-style">
+
+<head>
+    <title>Login Admin - StepUP!</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static 'img/ifro-icone.png' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/open-iconic.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke.css' %}">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+
+    <script src="{% static 'vendor/js/material-ripple.js' %}"></script>
+    <script src="{% static 'vendor/js/layout-helpers.js' %}"></script>
+
+    <!-- Theme settings -->
+    <!-- This file MUST be included after core stylesheets and layout-helpers.js in the <head> section -->
+    <script src="{% static 'vendor/js/theme-settings.js' %}"></script>
+
+    <!-- Core scripts -->
+    <script src="{% static 'vendor/js/pace.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <!-- Libs -->
+    <link rel="stylesheet" href="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!-- Page -->
+    <link rel="stylesheet" href="{% static 'vendor/css/pages/authentication.css' %}">
+</head>
+
+<body>
+
+    <div class="page-loader">
+        <div class="bg-primary"> </div>
+    </div>
+
+    <!-- Content -->
+
+    <div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4" style="background-image: url('https://quibrianzanews.com/wp-content/uploads/2017/07/Background-header-for-landing-page.jpg');">
+        <div class="ui-bg-overlay bg-dark opacity-25"></div>
+
+        <div class="authentication-inner py-5">
+
+            <div class="card pb-5">
+                <div class="p-4 px-sm-5 pt-sm-5">
+                    <!-- Logo -->
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="{% static 'img/ifro-logo.png' %}" height="30%" width="70%">
+                    </div>
+                    <!-- / Logo -->
+
+                    <h5 class="text-center text-muted font-weight-normal mb-4">Admin StepUp</h5>
+
+                    <!-- Form -->
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">CIAP</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Senha</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <a href="{% url 'url_dashboard' %}">
+                            <button type="button" class="btn btn-primary btn-block mt-4" style="background: #71C837">Logar</button>
+                        </a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- / Content -->
+
+    <!-- Core scripts -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/js/bootstrap.js' %}"></script>
+    <script src="{% static 'vendor/js/sidenav.js' %}"></script>
+
+    <!-- Libs -->
+    <script src="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'vendor/libs/chartjs/chartjs.js' %}"></script>
+
+    <!-- Demo -->
+    <script src="{% static 'js/demo.js' %}"></script>
+
+</body>
+
+</html>

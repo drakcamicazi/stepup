@@ -1,0 +1,88 @@
+{% extends 'admin/layout/layout.html' %} {% load staticfiles %} {% block top %}
+<title>Novo Evento</title>
+{% endblock %} {% block content %}
+<div class="container-fluid">
+    <div class="row m-1">
+        <div class="col-12" style="margin-left:40px;">
+            <h4>Criando novo evento</h4>
+            <hr class="border-light container-m--x my-2" style="width: calc(100% - 15px)">
+        </div>
+    </div>
+    <div class="row m-4">
+        <div class="col-12">
+            <div class="card mb-4">
+                <h5 class="card-header">
+                    Informações
+                </h5>
+                <div class="card-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-label">Nome</label>
+                                <input type="text" name="nome" class="form-control" placeholder="Titulo">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-label">Campus</label>
+                                <select name="campus" class="custom-select">
+                                    <option>Extensão</option>
+                                    <option>Pesquisa</option>
+                                    <option>Startup</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label">Data de inicio</label>
+                                        <input type="date" name="data_inicio" class="form-control" value="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label">Data de encerramento</label>
+                                        <input type="date" name="data_enceramento" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label">Horario de inicio</label>
+                                        <input type="time" name="horario_inicio" class="form-control" value="00:00">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="form-label">Horario de encerramento</label>
+                                        <input type="time" name="horario_enceramento" class="form-control" value="00:00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label w-100">Banner do evento</label>
+                            <input type="file" name="banner" class="m-2">
+                            <small class="form-text text-muted">Selecione o arquivo do seu computador.</small>
+                        </div>
+                        <div class="list-group col-md-6">
+                            <label class="form-label">Adicionar organizador</label>
+                            <input type="email" class="form-control" placeholder="CPF">
+                        </div>
+                        <br>
+                        <div class="list-group col-md-6 ">
+                            <a href="javascript:void(0)" class="list-group-item list-group-item-action media d-flex align-items-center">
+                                <img src="{% static 'img/avatars/4-small.png' %}" class="d-block ui-w-40 rounded-circle" alt>
+                                <div class="media-body ml-3">
+                                    <div class="text-dark line-height-condenced">Fulano </div>
+                                    <div class="text small mt-1">
+                                        364.023.324-55
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-5">Criar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

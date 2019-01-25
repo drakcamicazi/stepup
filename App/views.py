@@ -49,3 +49,18 @@ def submeter(request):
 def gerarCracha(request):
     data = {'participantes': Participante.objects.all()}
     return render(request, 'gerar_cracha.html', data)
+
+def loginAdmin(request):
+    return render(request, 'admin/loginadmin.html')
+
+def dashboard(request):
+    return render(request, 'admin/dashboard.html')
+
+def campus(request):
+    return render(request, 'admin/campus.html')
+
+def servidores(request):
+    return render(request, 'admin/servidores.html')
+
+def novoevento(request):
+    return render(request, 'admin/novoevento.html')
