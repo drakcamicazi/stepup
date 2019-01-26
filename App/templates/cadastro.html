@@ -46,8 +46,6 @@
         <div class="bg-primary"> </div>
     </div>
 
-    <!-- Content -->
-
     <div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4" style="background-image: url('https://quibrianzanews.com/wp-content/uploads/2017/07/Background-header-for-landing-page.jpg');">
         <div class="ui-bg-overlay bg-dark opacity-25"></div>
 
@@ -55,53 +53,53 @@
 
             <div class="card">
                 <div class="p-4 px-sm-5 pt-sm-5">
-                    <!-- Logo -->
                     <div class="d-flex justify-content-center align-items-center">
                         <img src="{% static 'img/ifro-logo.png' %}" height="30%" width="70%">
                     </div>
-                    <!-- / Logo -->
 
                     <h5 class="text-center text-muted font-weight-normal mb-4">Criar conta!</h5>
-
-                    <!-- Form -->
-                    <form>
+                    <div class="text-justify small mt-4">
+                        {{ response }}
+                    </div>
+                    <form action="{% url 'url_cadastro' %}" method="post">
                         <div class="form-group">
+                            {% csrf_token %}
                             <label class="form-label">Nome</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="nome" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control">
+                            <input type="email" name="email" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class="form-label">CPF</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="cpf" class="form-control">
                         </div>
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label class="form-label">Senha</label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="senha" class="form-control">
                             </div>
                             <div class="form-group col-6">
                                 <label class="form-label">Confirmar senha</label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="confirmasenha" class="form-control">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-5">
                                 <label class="form-label">Sexo</label>
-                                <select class="form-control">
-                                <option>Selecione</option>
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                            </select>
+                                <select class="form-control" name="sexo">
+                                    <option>Selecione</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
                             </div>
                             <div class="form-group col-7">
                                 <label class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control">
+                                <input type="date" name="data" class="form-control">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-block mt-4" style="background: #71C837">Cadastrar-se</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-4" style="background: #71C837">Cadastrar-se</button>
                         <div class="text-justify small mt-4">
                             Ao clicar em "Cadastrar-se", você concorda com nossos
                             <a href="javascript:void(0)">termos de serviço e política de privacidade</a>. Ocasionalmente, enviaremos e-mails relacionados à sua conta.
