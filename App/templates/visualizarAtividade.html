@@ -1,10 +1,10 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
-<title>Palestra: Prevenção as drogas</title>
+<title>{{ atividade }}</title>
 {% endblock %} {% block nome %} {{ nome }}{% endblock %} {% block content %}
 <div class="container-fluid pl-5 pr-5">
     <div class="row m">
         <h4 class="font-weight-bold py-6 mb-3 m-4">
-            Palestra: Prevenção as drogas
+            {{ atividade }}
             <div class="text-muted text-tiny mt-2">
                 <small class="font-weight-normal">Data de Inicio: 13/08/2012</small>
                 <small class="font-weight-normal" style="margin-left:10px">Data de Termino: 13/08/2012</small><br>

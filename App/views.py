@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from App.models import Participante,Usuario
+from App.models import Usuario,Evento,Participante
+
 
 
 def deslogar(request):
     request.session["logado"]=False
     request.session["logado_cpf"]=""
     return redirect(login)
+
+
 
 def login(request):
     # Definindo coleção de dados para ser passar nos "render"!
@@ -57,6 +60,8 @@ def login(request):
             # Retornando pagina padrão
             return render(request, 'login.html',data)
 
+
+
 def cadastro(request):
     data={}
     if request.method == 'POST':
@@ -84,20 +89,29 @@ def cadastro(request):
             # Retornando pagina padrão
             return render(request, 'cadastro.html',data)
 
+
+
 def evento(request):
-    data={}
     if "logado" in request.session:
         if request.session["logado"]==True:
+            data={"eventoslista":Evento.objects.all()}
             r_cpf=request.session["logado_cpf"]
             u=Usuario.objects.get(cpf=r_cpf)
             data["nome"]=u.nome
-            return render(request, 'eventos.html',data)     
+            if "evento" in request.GET:
+                # evento_requerido=request.GET.get("evento","")
+                
+                return render(request, 'visualizarEvento.html',data)   
+            else:
+                return render(request, 'eventos.html',data)     
         else:
             # Retornando pagina padrão
             return redirect(login)
     else:
         # Retornando pagina de login
         return redirect(login)
+
+
 
 def certificado(request):
     data={}
@@ -114,6 +128,8 @@ def certificado(request):
         # Retornando pagina de login
         return redirect(login)
     
+
+
 def atividade(request):
     data={}
     if "logado" in request.session:
@@ -121,7 +137,11 @@ def atividade(request):
             r_cpf=request.session["logado_cpf"]
             u=Usuario.objects.get(cpf=r_cpf)
             data["nome"]=u.nome
-            return render(request, 'atividades.html',data)   
+            if "atividade" in request.GET:
+                data['atividade']=request.GET.get("atividade","")
+                return render(request, 'visualizarAtividade.html',data)   
+            else:
+                return render(request, 'atividades.html',data)   
         else:
             # Retornando pagina padrão
             return redirect(login)
@@ -129,23 +149,6 @@ def atividade(request):
         # Retornando pagina de login
         return redirect(login)
 
-def visuevento(request):
-    data={}
-    if "logado" in request.session:
-        if request.session["logado"]==True:
-            if request.method == "POST":
-                r_cpf=request.session["logado_cpf"]
-                u=Usuario.objects.get(cpf=r_cpf)
-                data["nome"]=u.nome
-                return render(request, 'visualizarEvento.html',data)   
-            else:
-                return redirect(evento)   
-        else:
-            # Retornando pagina padrão
-            return redirect(login)
-    else:
-        # Retornando pagina de login
-        return redirect(login)
 
 
 def criarativi(request):
@@ -155,23 +158,46 @@ def criarativi(request):
     data["nome"]=u.nome
     return render(request, 'nova_atividade.html', data)
 
-def visuatividade(request):
-    data={}
-    if "logado" in request.session:
-        if request.session["logado"]==True:
-            if request.method == "POST":
-                r_cpf=request.session["logado_cpf"]
-                u=Usuario.objects.get(cpf=r_cpf)
-                data["nome"]=u.nome
-                return render(request, 'visualizarAtividade.html',data)   
-            else:
-                return redirect(atividade)   
-        else:
-            # Retornando pagina padrão
-            return redirect(login)
-    else:
-        # Retornando pagina de login
-        return redirect(login)
+
+
+# def visuevento(request,nome):
+#     data={}
+#     if "logado" in request.session:
+#         if request.session["logado"]==True:
+#             if "evento" in request.GET:
+#                 r_cpf=request.session["logado_cpf"]
+#                 u=Usuario.objects.get(cpf=r_cpf)
+#                 data["nome"]=u.nome
+#                 data['eve']=request.GET.get("evento","")
+#                 return render(request, 'visualizarEvento.html',data)   
+#             else:
+#                 return redirect(evento)   
+#         else:
+#             # Retornando pagina padrão
+#             return redirect(login)
+#     else:
+#         # Retornando pagina de login
+#         return redirect(login)
+
+# def visuatividade(request):
+#     data={}
+#     if "logado" in request.session:
+#         if request.session["logado"]==True:
+#             if request.method == "POST":
+#                 r_cpf=request.session["logado_cpf"]
+#                 u=Usuario.objects.get(cpf=r_cpf)
+#                 data["nome"]=u.nome
+#                 return render(request, 'visualizarAtividade.html',data)   
+#             else:
+#                 return redirect(atividade)   
+#         else:
+#             # Retornando pagina padrão
+#             return redirect(login)
+#     else:
+#         # Retornando pagina de login
+#         return redirect(login)
+
+
 
 def submissao(request):
     r_cpf=request.session["logado_cpf"]
@@ -180,12 +206,16 @@ def submissao(request):
     data["nome"]=u.nome
     return render(request, 'submissao.html', data)
 
+
+
 def avaliar(request):
     r_cpf=request.session["logado_cpf"]
     u=Usuario.objects.get(cpf=r_cpf)
     data={}
     data["nome"]=u.nome
     return render(request, 'avaliar.html', data)
+
+
 
 def avaliacao(request):
     r_cpf=request.session["logado_cpf"]
@@ -194,12 +224,16 @@ def avaliacao(request):
     data["nome"]=u.nome
     return render(request, 'avaliador.html', data)
 
+
+
 def gerencia(request):
     r_cpf=request.session["logado_cpf"]
     u=Usuario.objects.get(cpf=r_cpf)
     data={}
     data["nome"]=u.nome
     return render(request, 'gerencia_trabalho.html', data)
+
+
 
 def submeter(request):
     r_cpf=request.session["logado_cpf"]
@@ -208,12 +242,72 @@ def submeter(request):
     data["nome"]=u.nome
     return render(request, 'submeter.html', data)
 
+
+
 def gerarCracha(request):
     data = {'participantes': Participante.objects.all()}
     return render(request, 'gerar_cracha.html', data)
 
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#                   PARTE DO ADMIN                          # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+def deslogarAdmin(request):
+    request.session["admin_logado"]=False
+    request.session["admin_logado_ciap"]=""
+    return redirect(loginAdmin)
+
 def loginAdmin(request):
-    return render(request, 'admin/loginadmin.html')
+    # Definindo coleção de dados para ser passar nos "render"!
+    data={}
+    # Verificando se a requisição e via post!
+    if request.method == 'POST':
+        # Criando coleção de valores para retorno ao usuario!
+        data["response"]={}
+        # Adquirindo o valor recebido pela request!
+        p_cpf=request.POST.get("ciap","")
+        # Verificando se o usuario existe no banco!
+        existencia=Usuario.objects.filter(cpf=p_cpf).exists()
+        if existencia == True:
+            # Pegando as informações do usuario!
+            u=Usuario.objects.get(cpf=p_cpf)
+            # Adquirindo a senha recebida na request!
+            p_senha=request.POST.get("senha","")
+            # Comparando senha para ver se corresponde!
+            if u.senha == p_senha:
+                # Defini na session o cpf do usuario logado e autenticado!
+                request.session["admin_logado_ciap"]=u.cpf
+                request.session["admin_logado"]=True
+                # Redireciona para pagina de eventos do site
+                return redirect(dashboard)
+            else:
+                # Definindo retorno de senha não correspondida
+                data["response"]["usuario"]=p_cpf
+                data["response"]["senha_mensagem"]="Senha não corresponde!"
+                data["response"]["senha_validade"]="invalid"
+                # Retornando pagina
+                return render(request, 'admin/loginadmin.html',data)
+        else:
+            # Definindo retorno de usuario não existente no banco
+            data["response"]["id_mensagem"]="Usuario não encontrado!"
+            data["response"]["id_validade"]="invalid"
+            # Retornando pagina
+            return render(request, 'admin/loginadmin.html',data)
+    else:
+        if "admin_logado" in request.session:
+            if request.session["admin_logado"]==True:
+                # Redireciona para pagina de eventos do site apos verificar 
+                return redirect(dashboard)    
+            else:
+                # Retornando pagina padrão
+                return render(request, 'admin/loginadmin.html',data)
+        else:
+            # Retornando pagina padrão
+           return render(request, 'admin/loginadmin.html',data)
+    
 
 def dashboard(request):
     return render(request, 'admin/dashboard.html')

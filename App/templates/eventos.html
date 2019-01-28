@@ -10,19 +10,17 @@
     </div>
     <div class="row m-4">
         <div class="col-12">
-            <form action="{% url 'url_visuevento' %}" method="post">
-                <input type="number" value="" name="abrir_evento">
-            </form>
             <div class="table-responsive ui-bordered">
                 <table class="clients-table table table-hover m-0">
                     <tbody>
+                        {% for evento in eventoslista %}
                         <tr>
                             <td class="align-middle py-3">
                                 <div class="media align-items-center">
                                     <!-- <img src="../static/img/avatars/1.png" class="d-block ui-w-60 rounded-circle" alt=""> -->
                                     <img src="https://even3.blob.core.windows.net/logos/logoDAYSOFTWARE.112c16c860cf405f88aa.jpg" class="d-block ui-w-60 rounded" alt="">
                                     <div class="media-body flex-basis-auto pl-3">
-                                        <div><a class="redirect" id="1">5° Mostra de Software</a></div>
+                                        <div><a href="{% url 'url_evento' %}?evento={{ evento.nome }}">{{ evento.nome }}</a></div>
                                     </div>
                                 </div>
                             </td>
@@ -30,20 +28,20 @@
                                 Campus Ji-Paraná
                             </td>
                             <td class="align-middle py-3">
-                                23/11/2018
-                                <br> 24/11/2018
+                                {{ evento.data_inicial }}
+                                <br> {{ evento.data_final }}
                             </td>
                             <td class="align-middle py-3">
                                 <span class="badge badge-success">Inscrições Abertas</span>
                             </td>
                         </tr>
-
-                        <tr class="bg-light">
+                        {% endfor %}
+                        <!-- <tr class="bg-light">
                             <td class="align-middle py-3">
                                 <div class="media align-items-center">
                                     <img src="https://even3.blob.core.windows.net/logos/logo_ifro.6b7b7868bbe9423b9272.png" class="d-block ui-w-60 rounded" alt="">
                                     <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="">VII Congresso de Agronomia</a></div>
+                                        <div><a href="{% url 'url_evento' %}?evento=VII Congresso de Agronomia">VII Congresso de Agronomia</a></div>
                                     </div>
                                 </div>
                             </td>
@@ -57,7 +55,7 @@
                             <td class="align-middle py-3">
                                 <span class="badge badge-success"></span>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

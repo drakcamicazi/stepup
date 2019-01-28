@@ -1,5 +1,5 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
-<title>VII Day Software - IFRO</title>
+<title>{{ evento }}</title>
 {% endblock %} {% block nome %} {{ nome }}{% endblock %} {% block content %}
 <div class="container-fluid pl-5 pr-5">
     <div class="row">
@@ -35,7 +35,7 @@
             </script>
             <br>
             <h4 class="font-weight-bold py-6 mb-3 mt-2">
-                VII Day Software - IFRO
+                {{ evento }}
                 <div class="text-muted text-tiny mt-2">
                     <small class="font-weight-normal">Data de Inicio: 12/08/2012</small>
                     <small class="font-weight-normal" style="margin-left:10px">Data de Termino: 15/08/2012</small>
