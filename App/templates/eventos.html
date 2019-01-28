@@ -1,6 +1,6 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>Eventos</title>
-{% endblock %} {% block content %}
+{% endblock %} {% block nome %} {{ nome }}{% endblock %} {% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-12" style="margin-left:40px;">
@@ -10,6 +10,9 @@
     </div>
     <div class="row m-4">
         <div class="col-12">
+            <form action="{% url 'url_visuevento' %}" method="post">
+                <input type="number" value="" name="abrir_evento">
+            </form>
             <div class="table-responsive ui-bordered">
                 <table class="clients-table table table-hover m-0">
                     <tbody>
@@ -19,7 +22,7 @@
                                     <!-- <img src="../static/img/avatars/1.png" class="d-block ui-w-60 rounded-circle" alt=""> -->
                                     <img src="https://even3.blob.core.windows.net/logos/logoDAYSOFTWARE.112c16c860cf405f88aa.jpg" class="d-block ui-w-60 rounded" alt="">
                                     <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="{% url 'url_visuevento' %}">5° Mostra de Software</a></div>
+                                        <div><a class="redirect" id="1">5° Mostra de Software</a></div>
                                     </div>
                                 </div>
                             </td>
@@ -40,7 +43,7 @@
                                 <div class="media align-items-center">
                                     <img src="https://even3.blob.core.windows.net/logos/logo_ifro.6b7b7868bbe9423b9272.png" class="d-block ui-w-60 rounded" alt="">
                                     <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="{% url 'url_visuevento' %}">VII Congresso de Agronomia</a></div>
+                                        <div><a href="">VII Congresso de Agronomia</a></div>
                                     </div>
                                 </div>
                             </td>

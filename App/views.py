@@ -4,36 +4,58 @@ from django.shortcuts import render, redirect
 from App.models import Participante,Usuario
 
 
-def inicial(request):
-    return render(request, 'index.html')
+def deslogar(request):
+    request.session["logado"]=False
+    request.session["logado_cpf"]=""
+    return redirect(login)
 
 def login(request):
+    # Definindo coleção de dados para ser passar nos "render"!
     data={}
+    # Verificando se a requisição e via post!
     if request.method == 'POST':
+        # Criando coleção de valores para retorno ao usuario!
         data["response"]={}
-        data["response"]["id_mensagem"]=""
-        data["response"]["id_validade"]=""
-        data["response"]["senha_mensagem"]=""
-        data["response"]["senha_validade"]=""
+        # Adquirindo o valor recebido pela request!
         p_cpf=request.POST.get("cpf","")
-        u=Usuario.objects.get(cpf=p_cpf)
-        if u.cpf == p_cpf:
+        # Verificando se o usuario existe no banco!
+        existencia=Usuario.objects.filter(cpf=p_cpf).exists()
+        if existencia == True:
+            # Pegando as informações do usuario!
+            u=Usuario.objects.get(cpf=p_cpf)
+            # Adquirindo a senha recebida na request!
             p_senha=request.POST.get("senha","")
+            # Comparando senha para ver se corresponde!
             if u.senha == p_senha:
-                data["response"]["id_mensagem"]="Logado como " + u.nome
-                data["response"]["id_validade"]="valid"
-                return render(request, 'login.html',data)
+                # Defini na session o cpf do usuario logado e autenticado!
+                request.session["logado_cpf"]=u.cpf
+                request.session["logado"]=True
+                # Redireciona para pagina de eventos do site
+                return redirect(evento)
             else:
+                # Definindo retorno de senha não correspondida
+                data["response"]["usuario"]=p_cpf
                 data["response"]["senha_mensagem"]="Senha não corresponde!"
                 data["response"]["senha_validade"]="invalid"
+                # Retornando pagina
                 return render(request, 'login.html',data)
         else:
+            # Definindo retorno de usuario não existente no banco
             data["response"]["id_mensagem"]="Usuario não encontrado!"
             data["response"]["id_validade"]="invalid"
-
+            # Retornando pagina
+            return render(request, 'login.html',data)
     else:
-        data["response"]=""
-    return render(request, 'login.html',data)
+        if "logado" in request.session:
+            if request.session["logado"]==True:
+                # Redireciona para pagina de eventos do site apos verificar 
+                return redirect(evento)    
+            else:
+                # Retornando pagina padrão
+                return render(request, 'login.html',data)
+        else:
+            # Retornando pagina padrão
+            return render(request, 'login.html',data)
 
 def cadastro(request):
     data={}
@@ -47,44 +69,144 @@ def cadastro(request):
 
         u= Usuario.objects.create(nome=p_nome,cpf=p_cpf,sexo=p_sexo,email=p_email,senha=p_senha,data=p_data)
         u.save()
-        data["response"]="Cadastrado com sucesso"
-        return render(request, 'cadastro.html',data)
+        request.session["logado_cpf"]=u.cpf
+        request.session["logado"]=True
+        return redirect(login)
     else:
-        data["response"]=""
-        return render(request, 'cadastro.html',data)
+        if "logado" in request.session:
+            if request.session["logado"]==True:
+                # Redireciona para pagina de eventos do site apos verificar 
+                return redirect(evento)    
+            else:
+                # Retornando pagina padrão
+                return render(request, 'cadastro.html',data)
+        else:
+            # Retornando pagina padrão
+            return render(request, 'cadastro.html',data)
 
 def evento(request):
-    return render(request, 'eventos.html')
+    data={}
+    if "logado" in request.session:
+        if request.session["logado"]==True:
+            r_cpf=request.session["logado_cpf"]
+            u=Usuario.objects.get(cpf=r_cpf)
+            data["nome"]=u.nome
+            return render(request, 'eventos.html',data)     
+        else:
+            # Retornando pagina padrão
+            return redirect(login)
+    else:
+        # Retornando pagina de login
+        return redirect(login)
 
 def certificado(request):
-    return render(request, 'certificados.html')
+    data={}
+    if "logado" in request.session:
+        if request.session["logado"]==True:
+            r_cpf=request.session["logado_cpf"]
+            u=Usuario.objects.get(cpf=r_cpf)
+            data["nome"]=u.nome
+            return render(request, 'certificados.html',data)   
+        else:
+            # Retornando pagina padrão
+            return redirect(login)
+    else:
+        # Retornando pagina de login
+        return redirect(login)
+    
+def atividade(request):
+    data={}
+    if "logado" in request.session:
+        if request.session["logado"]==True:
+            r_cpf=request.session["logado_cpf"]
+            u=Usuario.objects.get(cpf=r_cpf)
+            data["nome"]=u.nome
+            return render(request, 'atividades.html',data)   
+        else:
+            # Retornando pagina padrão
+            return redirect(login)
+    else:
+        # Retornando pagina de login
+        return redirect(login)
 
 def visuevento(request):
-    return render(request, 'visualizarEventos.html')
+    data={}
+    if "logado" in request.session:
+        if request.session["logado"]==True:
+            if request.method == "POST":
+                r_cpf=request.session["logado_cpf"]
+                u=Usuario.objects.get(cpf=r_cpf)
+                data["nome"]=u.nome
+                return render(request, 'visualizarEvento.html',data)   
+            else:
+                return redirect(evento)   
+        else:
+            # Retornando pagina padrão
+            return redirect(login)
+    else:
+        # Retornando pagina de login
+        return redirect(login)
 
-def atividade(request):
-    return render(request, 'atividades.html')
 
 def criarativi(request):
-    return render(request, 'nova_atividade.html')
+    r_cpf=request.session["logado_cpf"]
+    u=Usuario.objects.get(cpf=r_cpf)
+    data={}
+    data["nome"]=u.nome
+    return render(request, 'nova_atividade.html', data)
 
 def visuatividade(request):
-    return render(request, 'visualizarAtividade.html')
+    data={}
+    if "logado" in request.session:
+        if request.session["logado"]==True:
+            if request.method == "POST":
+                r_cpf=request.session["logado_cpf"]
+                u=Usuario.objects.get(cpf=r_cpf)
+                data["nome"]=u.nome
+                return render(request, 'visualizarAtividade.html',data)   
+            else:
+                return redirect(atividade)   
+        else:
+            # Retornando pagina padrão
+            return redirect(login)
+    else:
+        # Retornando pagina de login
+        return redirect(login)
 
 def submissao(request):
-    return render(request, 'submissao.html')
+    r_cpf=request.session["logado_cpf"]
+    u=Usuario.objects.get(cpf=r_cpf)
+    data={}
+    data["nome"]=u.nome
+    return render(request, 'submissao.html', data)
 
 def avaliar(request):
-    return render(request, 'avaliar.html')
+    r_cpf=request.session["logado_cpf"]
+    u=Usuario.objects.get(cpf=r_cpf)
+    data={}
+    data["nome"]=u.nome
+    return render(request, 'avaliar.html', data)
 
 def avaliacao(request):
-    return render(request, 'avaliador.html')
+    r_cpf=request.session["logado_cpf"]
+    u=Usuario.objects.get(cpf=r_cpf)
+    data={}
+    data["nome"]=u.nome
+    return render(request, 'avaliador.html', data)
 
 def gerencia(request):
-    return render(request, 'gerencia_trabalho.html')
+    r_cpf=request.session["logado_cpf"]
+    u=Usuario.objects.get(cpf=r_cpf)
+    data={}
+    data["nome"]=u.nome
+    return render(request, 'gerencia_trabalho.html', data)
 
 def submeter(request):
-    return render(request, 'submeter.html')
+    r_cpf=request.session["logado_cpf"]
+    u=Usuario.objects.get(cpf=r_cpf)
+    data={}
+    data["nome"]=u.nome
+    return render(request, 'submeter.html', data)
 
 def gerarCracha(request):
     data = {'participantes': Participante.objects.all()}

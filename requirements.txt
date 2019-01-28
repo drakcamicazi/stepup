@@ -3,3 +3,4 @@ qrcode
 psycopg2-binary
 Pillow
 django-extensions
+ldap

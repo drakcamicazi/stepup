@@ -120,7 +120,7 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="{% url 'url_login' %}" class="sidenav-link">
+                        <a href="{% url 'url_deslogar' %}" class="sidenav-link">
                             <i class="sidenav-icon ion ion-md-arrow-round-back"></i>
                             <div>Deslogar</div>
                         </a>
@@ -290,7 +290,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                                         <img src="{% static 'img/avatars/1.png' %}" alt class="d-block ui-w-30 rounded-circle">
-                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">Mike Greene</span>
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">{% block nome %} {% endblock %}</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">

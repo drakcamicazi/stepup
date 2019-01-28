@@ -19,8 +19,9 @@ from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
-from App.views import inicial, evento, atividade, visuevento, visuatividade, login, submissao, submeter, avaliacao, \
-    avaliar, gerencia, cadastro, certificado, gerarCracha,criarativi,loginAdmin,dashboard,campus,servidores,novoevento
+from App.views import evento, atividade, visuevento, visuatividade, login, submissao, submeter, avaliacao, \
+    avaliar, gerencia, cadastro, certificado, gerarCracha, criarativi, loginAdmin, dashboard, campus, servidores, novoevento, \
+    deslogar
 
 urlpatterns = [
     path('admin/',loginAdmin,name="url_loginadmin" ),
@@ -28,13 +29,14 @@ urlpatterns = [
     path('novo_evento/',novoevento,name="url_novoevento" ),
     path('campus/',campus,name="url_campus" ),
     path('servidores/',servidores,name="url_servidores" ),
-    path('eventos/', evento, name='url_evento'),
-    path('atividade/', atividade, name='url_atividade'),
-    path('certificado/', certificado, name='url_certificado'),
-    path('visue/', visuevento, name='url_visuevento'),
-    path('visua/', visuatividade, name='url_visuatividade'),
     path('', login, name='url_login'),
+    path('deslogar/', deslogar, name='url_deslogar'),
     path('cadastro/', cadastro, name='url_cadastro'),
+    path('eventos/', evento, name='url_evento'),
+    path('atividades/', atividade, name='url_atividade'),
+    path('certificado/', certificado, name='url_certificado'),
+    path('evento/', visuevento, name='url_visuevento'),
+    path('atividade/', visuatividade, name='url_visuatividade'),
     path('trabalhos/', submissao, name='url_submissao'),
     path('envio_trabalho/', submeter, name='url_submeter'),
     path('avaliar/', avaliar, name='url_avaliar'),
