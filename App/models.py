@@ -2,28 +2,34 @@ from django.db import models
 
 
 class Usuario(models.Model):
-    nome = models.CharField(max_length=200)
+    foto= models.ImageField(blank=True)
+    nome = models.CharField(max_length=50)
+    sobrenome = models.CharField(max_length=50)
     cpf = models.CharField(unique=True, max_length=14)
     senha = models.CharField(max_length=50)
     email = models.EmailField()
-    sexo = models.CharField(max_length=9,null=True)
-    data = models.DateField(null=True)
+    sexo = models.CharField(max_length=9)
+    data = models.DateField()
 
     def __str__(self):
         return self.nome
 
 
-class Instituicao(models.Model):
-    nome = models.CharField(max_length=200)
-    local = models.CharField(max_length=100)
+class Campus(models.Model):
+    nome_fantasia = models.CharField(max_length=200)
+    cnpj = models.CharField(max_length=18)
+    logradouro = models.CharField(max_length=200)
+    numero = models.IntegerField(max_length=5)
+    bairro = models.CharField(max_length=100)
+    referencia = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.nome
+        return self.nome_fantasia
 
 
 class Departamento(models.Model):
     nome = models.CharField(max_length=200)
-    instituicao = models.ForeignKey(Instituicao, on_delete=models.PROTECT)
+    campus = models.ForeignKey(Campus, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.nome
@@ -34,26 +40,24 @@ class Evento(models.Model):
     descricao = models.TextField()
     data_inicial = models.DateField()
     data_final = models.DateField()
-    logotipo = models.ImageField(blank=True)
-    instituicao = models.ForeignKey(Instituicao, on_delete=models.PROTECT)
-    organizador = models.ManyToManyField(Usuario)
-    departamento = models.ManyToManyField(Departamento)
-    logradouro = models.CharField(max_length=200, blank=True)
-    numero = models.CharField(max_length=6, blank=True)
-    bairro = models.CharField(max_length=100, blank=True)
-    referencia = models.CharField(max_length=200, blank=True)
+    hora_inicial = models.TimeField()
+    hora_final = models.TimeField()
+    banner = models.ImageField(blank=True)
+    campus = models.ForeignKey(Campus, on_delete=models.PROTECT)
+    organizadores = models.ManyToManyField(Usuario)
+    departamentos = models.ManyToManyField(Departamento)
 
     def __str__(self):
         return self.nome
 
 class Atividade(models.Model):
     TIPOS= (
-        ('Palestra', 'Palestra'),
-        ('Oficina', 'Oficina'),
-        ('Roda de Conversa', 'Roda de Conversa'),
-        ('Mostra', 'Mostra'),
-        ('Minicurso', 'Minicurso'),
-        ('Competição', 'Competição'),
+        ('1', 'Palestra'),
+        ('2', 'Oficina'),
+        ('3', 'Roda de Conversa'),
+        ('4', 'Mostra'),
+        ('5', 'Minicurso'),
+        ('6', 'Competição'),
     )
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
@@ -70,11 +74,11 @@ class Atividade(models.Model):
 
 class Participante(models.Model):
     TIPOS = (
-        ('Aluno', 'Aluno do IFRO'),
-        ('Servidor', 'Servidor do IFRO'),
-        ('Monitor', 'Monitor'),
-        ('Convidado', 'Convidado'),
-        ('Visitante', 'Visitante externo')
+        ('1', 'Servidor'),
+        ('2', 'Monitor'),
+        ('3', 'Aluno'),
+        ('4', 'Convidado'),
+        ('5', 'Visitante')
     )
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     tipo = models.CharField(max_length=50, choices=TIPOS)
@@ -87,6 +91,11 @@ class Participante(models.Model):
 
 
 class Trabalho(models.Model):
+    STATUS=(
+        (1, 'Em Avaliação'),
+        (2, 'Aprovado'),
+        (3, 'Não Aprovado')
+    )
     titulo = models.CharField(max_length=200)
     area = models.CharField(max_length=100)
     modalidade = models.CharField(max_length=150)
@@ -94,7 +103,7 @@ class Trabalho(models.Model):
     arquivo = models.FileField()
     autores = models.ManyToManyField(Participante, related_name='Autor')
     apresentadores = models.ManyToManyField(Participante, related_name='Apresentador')
-    status = models.CharField(max_length=50, choices=((1, 'Em Avaliação'), (2, 'Aprovado'), (3, 'Não Aprovado')))
+    status = models.CharField(max_length=50, choices=STATUS)
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)
 
     def __str__(self):
