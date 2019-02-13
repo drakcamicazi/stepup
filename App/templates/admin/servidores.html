@@ -1,12 +1,14 @@
 {% extends 'admin/layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>Servidores</title>
-{% endblock %} {% block content %}
+{% endblock %} {% block nome %}{{nome}} {% endblock %}{% block content %}
+<link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-sortable/bootstrap-sortable.css' %}">
+<script src="{% static 'vendor/libs/bootstrap-sortable/bootstrap-sortable.js' %}"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12" style="margin-left:40px;">
             <h4 class="d-flex justify-content-between align-items-center font-weight-bold py-1 mb-1" style="width: calc(100% - 60px)">
                 <div>Servidores</div>
-                <a href="{% url 'url_criarativi' %}">
+                <a href="{% url 'url_novoservidor' %}">
                     <button type="button" class="btn btn-primary btn-round d-block">
                         <span class="ion ion-md-add"></span>&nbsp; Novo servidor
                     </button>
@@ -17,31 +19,26 @@
     </div>
     <div class="row m-4">
         <div class="col-12">
-            <table class="table table-hover">
-                <thead class="thead-dark">
+            <table class="table table-striped table-bordered table-hover sortable">
+                <thead>
                     <tr>
                         <th>CIAP</th>
                         <th>Nome</th>
                         <th>CPF</th>
-                        <th>Função</th>
+                        <th>Departamento</th>
                         <th>Campus</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for servidor in servidoreslista %}
                     <tr>
-                        <td>254252353</td>
-                        <td>Diego Fonseca</td>
-                        <td>523.124.412-54</td>
-                        <td>Professor</td>
-                        <td>IFRO — Campus Ji-Paraná</td>
+                        <td>{{servidor.ciap}}</td>
+                        <td>{{servidor.usuario.nome}}</td>
+                        <td>{{servidor.usuario.cpf}}</td>
+                        <td>{{servidor.departamento.nome}}</td>
+                        <td>{{servidor.departamento.campus.nome}}</td>
                     </tr>
-                    <tr>
-                        <td>325235235</td>
-                        <td>Lucas Brandão</td>
-                        <td>123.456.789-00</td>
-                        <td>Professor</td>
-                        <td>IFRO — Campus Ji-Paraná</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

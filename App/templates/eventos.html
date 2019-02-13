@@ -1,6 +1,8 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>Eventos</title>
-{% endblock %} {% block nome %} {{ nome }}{% endblock %} {% block content %}
+{% endblock %} {% block nome %}
+<img src="{{logadoUsuario.foto.url}}" alt class="d-block ui-w-30 rounded-circle">
+<span class="px-1 mr-lg-2 ml-2 ml-lg-0">{{logadoUsuario.nome}}</span> {% endblock %} {% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-12" style="margin-left:40px;">
@@ -17,45 +19,33 @@
                         <tr>
                             <td class="align-middle py-3">
                                 <div class="media align-items-center">
-                                    <!-- <img src="../static/img/avatars/1.png" class="d-block ui-w-60 rounded-circle" alt=""> -->
-                                    <img src="https://even3.blob.core.windows.net/logos/logoDAYSOFTWARE.112c16c860cf405f88aa.jpg" class="d-block ui-w-60 rounded" alt="">
+                                    <img src="{{evento.banner.url}}" class="d-block ui-w-60 rounded" alt="">
                                     <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="{% url 'url_evento' %}?evento={{ evento.nome }}">{{ evento.nome }}</a></div>
+                                        <div><a href="{% url 'url_evento' %}?evento={{ evento.nome}}">{{ evento.nome }}</a></div>
                                     </div>
                                 </div>
                             </td>
                             <td class="align-middle py-3">
-                                Campus Ji-Paraná
+                                {{evento.campus.nome}}
                             </td>
                             <td class="align-middle py-3">
                                 {{ evento.data_inicial }}
                                 <br> {{ evento.data_final }}
                             </td>
                             <td class="align-middle py-3">
-                                <span class="badge badge-success">Inscrições Abertas</span>
+                                {% if evento.situacao == "Inscrições abertas" %}
+                                <span class="badge badge-success">
+                                    {{evento.situacao}}
+                                </span> {% endif %} {% if evento.situacao == "Encerrado" %}
+                                <span class="badge badge-danger">
+                                    {{evento.situacao}}
+                                </span> {% endif %} {% if evento.situacao == "Em andamento" %}
+                                <span class="badge badge-info">
+                                    {{evento.situacao}}
+                                </span> {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
-                        <!-- <tr class="bg-light">
-                            <td class="align-middle py-3">
-                                <div class="media align-items-center">
-                                    <img src="https://even3.blob.core.windows.net/logos/logo_ifro.6b7b7868bbe9423b9272.png" class="d-block ui-w-60 rounded" alt="">
-                                    <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="{% url 'url_evento' %}?evento=VII Congresso de Agronomia">VII Congresso de Agronomia</a></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle py-3">
-                                Campus Colorado
-                            </td>
-                            <td class="align-middle py-3">
-                                29/10/2018
-                                <br> 02/11/2018
-                            </td>
-                            <td class="align-middle py-3">
-                                <span class="badge badge-success"></span>
-                            </td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>

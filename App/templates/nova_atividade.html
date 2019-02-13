@@ -1,6 +1,15 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>Nova atividade</title>
-{% endblock %} {% block nome %} {{ nome }}{% endblock %} {% block content %}
+{% endblock %} {% block nome %}
+<img src="{{logadoUsuario.foto.url}}" alt class="d-block ui-w-30 rounded-circle">
+<span class="px-1 mr-lg-2 ml-2 ml-lg-0">{{logadoUsuario.nome}}</span> {% endblock %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.css' %}">
+<script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
+<script src="{% static 'vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js' %}"></script>
+<link rel="stylesheet" href="{% static 'vendor/libs/select2/select2.css' %}">
+<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+
 <div class="container-fluid">
     <div class="row m-1">
         <div class="col-12" style="margin-left:40px;">
@@ -15,75 +24,106 @@
                     Formulário
                 </h5>
                 <div class="card-body">
-                    <form>
+                    <form action="{% url 'url_criarativi' %}" method="POST">
                         <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <label class="form-label">Titulo da atividade</label>
-                                <input type="text" class="form-control" placeholder="Titulo">
+                            <div class="form-group col-md-7">
+                                <label class="form-label">Titulo da atividade</label> {{form.titulo}}
+                                <!-- <input type="text" class="form-control" placeholder="Titulo"> -->
                             </div>
-                            <div class="form-group col-md-4">
-                                <label class="form-label">Local da atividade</label>
-                                <input type="text" class="form-control" placeholder="Sala">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label class="form-label">Tipo</label>
-                                <select class="custom-select">
-                                    <option>Palestra</option>
-                                    <option>Oficina</option>
-                                    <option>Minicurso</option>
-                                </select>
+                            <div class="form-group col-md-5">
+                                <label class="form-label">Local da atividade</label>{{form.local}}
+                                <!-- <input type="text" class="form-control" placeholder="Sala"> -->
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label class="form-label">Dia</label>
-                                <input type="date" name="" class="form-control" value="">
+                                <label class="form-label">Dia</label> {{form.data}}
+                                <!-- <input type="text" name="" class="form-control datapick" placeholder="AAAA-MM-DD"> -->
                             </div>
-
                             <div class="form-group col-md-6">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label class="form-label">Horario de inicio</label>
-                                        <input type="time" name="" class="form-control" value="00:00">
+                                        <label class="form-label">Horario de inicio</label>{{form.hora_inicial}}
+                                        <!-- <input type="time" name="" class="form-control timepick" value="00:00"> -->
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="form-label">Horario de encerramento</label>
-                                        <input type="time" name="" class="form-control" value="00:00">
+                                        <label class="form-label">Horario de encerramento</label>{{form.hora_final}}
+                                        <!-- <input type="time" name="" class="form-control timepick" value="00:00"> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <div class="list-group col-md-12">
-                                    <label class="form-label">Adicionar apresentadores</label>
-                                    <input type="email" class="form-control" placeholder="CPF">
-                                </div>
-                                <br>
-                                <div class="list-group col-md-12 ">
-                                    <a href="javascript:void(0)" class="list-group-item list-group-item-action media d-flex align-items-center">
-                                        <img src="{% static 'img/avatars/4-small.png' %}" class="d-block ui-w-40 rounded-circle" alt>
-                                        <div class="media-body ml-3">
-                                            <div class="text-dark line-height-condenced">Wallas Gibson</div>
-                                            <div class="text small mt-1">
-                                                waalasgb@gmail.com
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                            <div class="form-group col-md-12">
+                                <label class="form-label">Evento</label> {{form.evento}}
+                                <!-- <input type="text" class="form-control" placeholder="Titulo"> -->
                             </div>
-                            <div class="form-group col-md-6">
-                                <label class="form-label">Descrição</label>
-                                <textarea class="form-control bg-lighter" rows="6"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label class="form-label">Adicionar apresentadores</label>{{form.responsaveis}}
+                                <!-- <select multiple="multiple">
+                                    <option>Palestra</option>
+                                    <option>Oficina</option>
+                                    <option>Minicurso</option>
+                                </select> -->
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="form-label">Tipo</label>{{form.tipo}}
+                                <!-- <select>
+                                <option>Palestra</option>
+                                    <option>Oficina</option>
+                                    <option>Minicurso</option>
+                                </select> -->
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="form-label">Descrição</label> {{form.descricao}}
+                                <!-- <textarea class="form-control bg-lighter" rows="6"></textarea> -->
                             </div>
                         </div>
                         <br>
+                        <button type="submit" class="btn btn-success">Criar atividade</button>
+                        <a href="{% url 'url_atividade' %}">
+                            <button type="button" class="btn btn-default">Cancelar</button>
+                        </a>
                     </form>
-                    <button type="submit" class="btn btn-success">Criar atividade</button>
-                    <a href="{% url 'url_atividade' %}">
-                        <button type="submit" class="btn btn-default">Cancelar</button>
-                    </a>
                 </div>
+
+                <script>
+                    $(document).ready(function() {
+                        $('input.datapick').bootstrapMaterialDatePicker({
+                            weekStart: 0,
+                            time: false,
+                            clearButton: true,
+                            switchOnClick: true
+                        });
+                        $('input.timepick').bootstrapMaterialDatePicker({
+                            date: false,
+                            shortTime: false,
+                            format: 'HH:mm',
+                            switchOnClick: true
+                        });
+                        $('select').select2({
+                            placeholder: "Selecione!"
+                        });
+                        $('#evento').change(function() {
+                            $.get("{% url 'url_procurar' %}", function(data) {
+                                evento = data['evento'];
+                                console.log(evento)
+                                event.defaultPrevented()
+                                    // for (let index = 0; index < evento.length; index++) {
+                                    //     if (evento[index].id == event.target.value) {
+                                    //         $('input.datapick').bootstrapMaterialDatePicker('setMinDate', evento[index].data_inicial);
+                                    //         $('input.datapick').bootstrapMaterialDatePicker('setMaDate', evento[index].data_final);
+                                    //     }
+                                    // }
+                            });
+                        });
+                    });
+                </script>
+
             </div>
         </div>
     </div>

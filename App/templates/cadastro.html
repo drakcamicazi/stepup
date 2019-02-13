@@ -38,6 +38,9 @@
     <link rel="stylesheet" href="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}">
     <!-- Page -->
     <link rel="stylesheet" href="{% static 'vendor/css/pages/authentication.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.css' %}">
+    <script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
+    <script src="{% static 'vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js' %}"></script>
 </head>
 
 <body>
@@ -59,44 +62,51 @@
 
                     <h5 class="text-center text-muted font-weight-normal mb-4">Criar conta!</h5>
                     <div class="text-justify small mt-4">
-                        {{ response }}
+                        {{ erro }}
                     </div>
-                    <form action="{% url 'url_cadastro' %}" method="post">
-                        <div class="form-group">
-                            {% csrf_token %}
-                            <label class="form-label">Nome</label>
-                            <input type="text" name="nome" class="form-control">
+                    <form action="{% url 'url_cadastro' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group" style="display: flex;justify-content: center">
+                            <style>
+                                img.fotos {
+                                    width: 40%;
+                                    height: 40%;
+                                    border-radius: 50%
+                                }
+                                
+                                img.hidden {
+                                    visibility: hidden;
+                                    width: 0%;
+                                    height: 0%;
+                                }
+                            </style>
+                            <img class="fotos" id="padrao" src="{{MEDIA_URL}}fotoperfil/default.png">
+                            <img class="fotos hidden" id="preview" src="">
+                        </div>
+                        <div class="form-group" style="display: flex;flex-direction:column;align-items: center">
+                            <label class="form-label">Foto de Perfil <span style="font-size: 9px;color:#bebebe">(opcional)</span></label> {{ form.foto }}
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control">
+                            <label class="form-label">Nome</label> {{ form.nome }}
                         </div>
                         <div class="form-group">
-                            <label class="form-label">CPF</label>
-                            <input type="text" name="cpf" class="form-control">
+                            <label class="form-label">Sobrenome</label> {{ form.sobrenome }}
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label class="form-label">Senha</label>
-                                <input type="password" name="senha" class="form-control">
-                            </div>
-                            <div class="form-group col-6">
-                                <label class="form-label">Confirmar senha</label>
-                                <input type="password" name="confirmasenha" class="form-control">
-                            </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label> {{ form.email }}
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CPF</label> {{ form.cpf }}
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Senha</label> {{ form.senha }}
                         </div>
                         <div class="form-row">
                             <div class="form-group col-5">
-                                <label class="form-label">Sexo</label>
-                                <select class="form-control" name="sexo">
-                                    <option>Selecione</option>
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                </select>
+                                <label class="form-label">Sexo</label> {{ form.sexo }}
                             </div>
                             <div class="form-group col-7">
-                                <label class="form-label">Data de Nascimento</label>
-                                <input type="date" name="data" class="form-control">
+                                <label class="form-label">Data de Nascimento</label> {{ form.data }}
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block mt-4" style="background: #71C837">Cadastrar-se</button>
@@ -115,7 +125,30 @@
                     </div>
                 </div>
             </div>
-
+            <script>
+                $(document).ready(function() {
+                    $('input.datapick').bootstrapMaterialDatePicker({
+                        weekStart: 0,
+                        time: false,
+                        clearButton: true
+                    });
+                    $("input[name='foto']").attr('style', 'font-size:10px');
+                    $("input[name='foto']").change(function() {
+                        if (this.files && this.files[0]) {
+                            $("img#preview").toggleClass("hidden");
+                            $("img#padrao").toggleClass("hidden");
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                $('#preview').attr('src', e.target.result);
+                            }
+                            reader.readAsDataURL(this.files[0]);
+                        } else {
+                            $("img#preview").toggleClass("hidden");
+                            $("img#padrao").toggleClass("hidden");
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 

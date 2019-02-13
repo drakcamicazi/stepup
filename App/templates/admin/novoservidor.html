@@ -1,0 +1,100 @@
+{% extends 'admin/layout/layout.html' %} {% load staticfiles %} {% block top %}
+<title>Novo Departamento</title>
+<link rel="stylesheet" href="{% static 'vendor/libs/select2/select2.css' %}">
+<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
+{% endblock %}{% block nome %}{{nome}} {% endblock %} {% block content %}
+<style>
+    div#alerta {
+        width: auto;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    div#alerta i.fas {
+        font-size: 140px;
+        color: #f1f11f;
+    }
+    
+    div#alerta label {
+        font-size: 20px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row m-1">
+        <div class="col-12" style="margin-left:40px;">
+            <h4>Criando novo departamento</h4>
+            <hr class="border-light container-m--x my-2" style="width: calc(100% - 15px)">
+        </div>
+    </div>
+    <div class="row m-4">
+        {% if departamentoquant > 0 %}{% if usuarioquant > 0 %}
+        <div class="col-12">
+            <div class="card mb-4">
+                <h5 class="card-header">
+                    Informações
+                </h5>
+                <div class="card-body">
+                    <form action="{% url 'url_novoservidor' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label class="form-label">CIAP</label>
+                                <input type="text" name="ciap" class="form-control" placeholder="CIAP">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="form-label">Usuario</label>
+                                <select name="usuario">
+                                    {% for usuario in usuario_lista %}
+                                    <option value="{{usuario.id}}">{{usuario.nome}} - {{usuario.cpf}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label class="form-label">Departamento </label>
+                                <select name="departamento">
+                                    {% for departamento in departamento_lista %}
+                                    <option value="{{departamento.id}}">{{departamento.nome}} - {{departamento.campus.nome}}</option>
+                                    {% endfor %}
+                                </select>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('select').select2();
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-5">Criar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-8 offset-2">
+            <div id="alerta">
+                <i class="fas fa-exclamation-triangle"></i>
+                <br>
+                <label class="card-title text-center">
+                    Atenção não e possivel cadastrar um Servidor sem que exista um Usuario, por favor peça para a pessoa se cadastrar primeiro!
+                </label>
+            </div>
+        </div>
+        {% endif %}{% else %}
+        <div class="col-8 offset-2">
+            <div id="alerta">
+                <i class="fas fa-exclamation-triangle"></i>
+                <br>
+                <label class="card-title text-center">
+                    Atenção não e possivel cadastrar um Servidor sem ao menos que um Departamento esteja cadastrado!
+                </label>
+                <a href="{% url 'url_novodepartamento' %}">
+                    <button type="submit" class="btn btn-warning m-5">Cadastrar novo departamento</button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

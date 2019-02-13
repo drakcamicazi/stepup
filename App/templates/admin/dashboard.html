@@ -1,6 +1,6 @@
 {% extends 'admin/layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>Eventos</title>
-{% endblock %} {% block content %}
+{% endblock %} {% block nome %}{{nome}} {% endblock %}{% block content %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-12" style="margin-left:40px;">
@@ -20,67 +20,38 @@
             <div class="table-responsive ui-bordered">
                 <table class="clients-table table table-hover m-0">
                     <tbody>
+                        {% for evento in eventoslista %}
                         <tr>
                             <td class="align-middle py-3">
                                 <div class="media align-items-center">
-                                    <img src="https://even3.blob.core.windows.net/logos/logoDAYSOFTWARE.112c16c860cf405f88aa.jpg" class="d-block ui-w-60 rounded" alt="">
+                                    <!-- <img src="../static/img/avatars/1.png" class="d-block ui-w-60 rounded-circle" alt=""> -->
+                                    <img src="{{ MEDIA_URL }}{{evento.banner}}" class="d-block ui-w-60 rounded" alt="">
                                     <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="">5° Mostra de Software</a></div>
+                                        <div><a href="{% url 'url_evento' %}?evento={{ evento.nome }}">{{ evento.nome }}</a></div>
                                     </div>
                                 </div>
                             </td>
                             <td class="align-middle py-3">
-                                Campus Ji-Paraná
+                                {{evento.campus.nome}}
                             </td>
                             <td class="align-middle py-3">
-                                23/11/2018
-                                <br> 24/11/2018
+                                {{ evento.data_inicial }}
+                                <br> {{ evento.data_final }}
                             </td>
                             <td class="align-middle py-3">
-                                <span class="badge badge-danger">Encerrado</span>
+                                {% if evento.situacao == "Inscrições abertas" %}
+                                <span class="badge badge-success">
+                                        {{evento.situacao}}
+                                    </span> {% endif %} {% if evento.situacao == "Encerrado" %}
+                                <span class="badge badge-danger">
+                                        {{evento.situacao}}
+                                    </span> {% endif %} {% if evento.situacao == "Em andamento" %}
+                                <span class="badge badge-info">
+                                        {{evento.situacao}}
+                                    </span> {% endif %}
                             </td>
                         </tr>
-
-                        <tr class="bg-light">
-                            <td class="align-middle py-3">
-                                <div class="media align-items-center">
-                                    <img src="https://even3.blob.core.windows.net/logos/logo_ifro.6b7b7868bbe9423b9272.png" class="d-block ui-w-60 rounded" alt="">
-                                    <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="">VII Congresso de Agronomia</a></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle py-3">
-                                Campus Colorado
-                            </td>
-                            <td class="align-middle py-3">
-                                29/10/2018
-                                <br> 02/11/2018
-                            </td>
-                            <td class="align-middle py-3">
-                                <span class="badge badge-success">Em andamento</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle py-3">
-                                <div class="media align-items-center">
-                                    <img src="https://even3.blob.core.windows.net/logos/logo_ifro.6b7b7868bbe9423b9272.png" class="d-block ui-w-60 rounded" alt="">
-                                    <div class="media-body flex-basis-auto pl-3">
-                                        <div><a href="">VII Congresso de Agronomia</a></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle py-3">
-                                Campus Colorado
-                            </td>
-                            <td class="align-middle py-3">
-                                29/10/2018
-                                <br> 02/11/2018
-                            </td>
-                            <td class="align-middle py-3">
-                                <span class="badge badge-info">Em aguardo</span>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

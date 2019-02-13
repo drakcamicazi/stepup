@@ -1,0 +1,75 @@
+{% extends 'admin/layout/layout.html' %} {% load staticfiles %} {% block top %}
+<title>Novo Departamento</title>
+{% endblock %}{% block nome %}{{nome}} {% endblock %} {% block content %}
+<div class="container-fluid">
+    <div class="row m-1">
+        <div class="col-12" style="margin-left:40px;">
+            <h4>Criando novo departamento</h4>
+            <hr class="border-light container-m--x my-2" style="width: calc(100% - 15px)">
+        </div>
+    </div>
+    <div class="row m-4">
+        {% if quantidade_campus > 0 %}
+        <div class="col-12">
+            <div class="card mb-4">
+                <h5 class="card-header">
+                    Informações
+                </h5>
+                <div class="card-body">
+                    <form action="{% url 'url_novodepartamento' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <label class="form-label">Nome </label>
+                                <input type="text" name="nome" class="form-control" placeholder="Nome">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label class="form-label">Campus</label>
+                                <select name="campus" class="custom-select">
+                                    {% for campus in campuslista %}
+                                    <option value="{{campus.id}}"> {{campus.nome}} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mt-5">Criar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-8 offset-2">
+            <style>
+                div#alerta {
+                    width: auto;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                div#alerta i.fas {
+                    font-size: 140px;
+                    color: #f1f11f;
+                }
+                
+                div#alerta label {
+                    font-size: 20px;
+                }
+            </style>
+            <div id="alerta">
+                <i class="fas fa-exclamation-triangle"></i>
+                <br>
+                <label class="card-title text-center">
+                    Atenção não e possivel cadastrar um Departamento sem ao menos que um Campus esteja cadastrado!
+                </label>
+                <a href="{% url 'url_novocampus' %}">
+                    <button type="submit" class="btn btn-warning m-5">Cadastrar novo campus</button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

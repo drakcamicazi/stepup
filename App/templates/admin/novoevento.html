@@ -1,6 +1,11 @@
 {% extends 'admin/layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>Novo Evento</title>
-{% endblock %} {% block content %}
+{% endblock %} {% block nome %}{{nome}} {% endblock %}{% block content %}
+<link rel="stylesheet" href="{% static 'vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.css' %}">
+<script src="{% static 'vendor/libs/moment/moment.js' %}"></script>
+<script src="{% static 'vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.js' %}"></script>
+<link rel="stylesheet" href="{% static 'vendor/libs/select2/select2.css' %}">
+<script src="{% static 'vendor/libs/select2/select2.js' %}"></script>
 <div class="container-fluid">
     <div class="row m-1">
         <div class="col-12" style="margin-left:40px;">
@@ -10,79 +15,80 @@
     </div>
     <div class="row m-4">
         <div class="col-12">
-            <div class="card mb-4">
-                <h5 class="card-header">
-                    Informações
-                </h5>
-                <div class="card-body">
-                    <form>
+            <form action="{% url 'url_novoevento' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="card mb-4">
+                    <h5 class="card-header">
+                        Informações
+                    </h5>
+                    <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" placeholder="Titulo">
+                                <label class="form-label">Nome</label> {{form.nome}}
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="form-label">Campus</label>
-                                <select name="campus" class="custom-select">
-                                    <option>Extensão</option>
-                                    <option>Pesquisa</option>
-                                    <option>Startup</option>
-                                </select>
+                                <label class="form-label">Campus</label> {{form.campus}}
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label class="form-label">Data de inicio</label>
-                                        <input type="date" name="data_inicio" class="form-control" value="">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="form-label">Data de encerramento</label>
-                                        <input type="date" name="data_enceramento" class="form-control" value="">
-                                    </div>
-                                </div>
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Data de inicio</label> {{form.data_inicial}}
                             </div>
-                            <div class="form-group col-md-6">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label class="form-label">Horario de inicio</label>
-                                        <input type="time" name="horario_inicio" class="form-control" value="00:00">
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Horario de inicio</label> {{form.hora_inicial}}
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Data de encerramento</label> {{form.data_final}}
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="form-label">Horario de encerramento</label> {{form.hora_final}}
+                            </div>
 
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="form-label">Horario de encerramento</label>
-                                        <input type="time" name="horario_enceramento" class="form-control" value="00:00">
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-label w-100">Banner do evento</label> {{form.banner}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-label w-100">Descrição</label> {{form.descricao}}
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label w-100">Banner do evento</label>
-                            <input type="file" name="banner" class="m-2">
-                            <small class="form-text text-muted">Selecione o arquivo do seu computador.</small>
-                        </div>
-                        <div class="list-group col-md-6">
-                            <label class="form-label">Adicionar organizador</label>
-                            <input type="email" class="form-control" placeholder="CPF">
-                        </div>
-                        <br>
-                        <div class="list-group col-md-6 ">
-                            <a href="javascript:void(0)" class="list-group-item list-group-item-action media d-flex align-items-center">
-                                <img src="{% static 'img/avatars/4-small.png' %}" class="d-block ui-w-40 rounded-circle" alt>
-                                <div class="media-body ml-3">
-                                    <div class="text-dark line-height-condenced">Fulano </div>
-                                    <div class="text small mt-1">
-                                        364.023.324-55
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <button type="submit" class="btn btn-success mt-5">Criar</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                <div class="card mb-4">
+                    <h5 class="card-header">
+                        Organização
+                    </h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="list-group col-md-12">
+                                {{form.organizadores}}
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success mt-5">Criar</button>
+                    </div>
+                </div>
+            </form>
+            <script>
+                $(document).ready(function() {
+                    $('input.datapick').bootstrapMaterialDatePicker({
+                        weekStart: 0,
+                        time: false,
+                        clearButton: true,
+                        switchOnClick: true
+                    });
+                    $('input.timepick').bootstrapMaterialDatePicker({
+                        date: false,
+                        shortTime: false,
+                        format: 'HH:mm',
+                        switchOnClick: true
+                    });
+                    $('select').select2();
+                });
+            </script>
         </div>
     </div>
 </div>
+
 {% endblock %}

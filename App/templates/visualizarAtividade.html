@@ -1,6 +1,8 @@
 {% extends 'layout/layout.html' %} {% load staticfiles %} {% block top %}
 <title>{{ atividade }}</title>
-{% endblock %} {% block nome %} {{ nome }}{% endblock %} {% block content %}
+{% endblock %} {% block nome %}
+<img src="{{logadoUsuario.foto.url}}" alt class="d-block ui-w-30 rounded-circle">
+<span class="px-1 mr-lg-2 ml-2 ml-lg-0">{{logadoUsuario.nome}}</span> {% endblock %} {% block content %}
 <div class="container-fluid pl-5 pr-5">
     <div class="row m">
         <h4 class="font-weight-bold py-6 mb-3 m-4">

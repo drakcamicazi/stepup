@@ -15,27 +15,37 @@ Including another URLconf
 """
 from django.conf.urls import  include, url
 from django.contrib import admin
+
 from django.urls import path
+
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 
+from django.conf import settings
+
 from App.views import evento, atividade, login, submissao, submeter, avaliacao, deslogarAdmin, \
     avaliar, gerencia, cadastro, certificado, gerarCracha, criarativi, loginAdmin, dashboard, campus, servidores, novoevento, \
-    deslogar
+    deslogar,departamento,novocampus,novodepartamento,novoservidor,perfil,procura
 
 urlpatterns = [
     # Parte administrativa
         path('admin/',loginAdmin,name="url_loginadmin" ),
-        path('admin/deslogar', deslogarAdmin, name='url_deslogar'),
+        path('admin/deslogar', deslogarAdmin, name='url_deslogaradmin'),
         path('admin/dashboard/',dashboard,name="url_dashboard" ),
         path('admin/novo_evento/',novoevento,name="url_novoevento" ),
+        path('admin/novo_campus/',novocampus,name="url_novocampus" ),
+        path('admin/novo_departamento/',novodepartamento,name="url_novodepartamento" ),
+        path('admin/novo_servidor/',novoservidor,name="url_novoservidor" ),
         path('admin/campus/',campus,name="url_campus" ),
+        path('admin/departamentos/',departamento,name="url_departamentos" ),
         path('admin/servidores/',servidores,name="url_servidores" ),
     # Parte de Login e autenticação
         path('', login, name='url_login'),
         path('deslogar/', deslogar, name='url_deslogar'),
         path('cadastro/', cadastro, name='url_cadastro'),
     # Paginas de Navegação
+        # Perfil
+            path('perfil/', perfil, name='url_perfil'),
         # Eventos
             path('eventos/', evento, name='url_evento'),
             # path('evento/', visuevento, name='url_visuevento'), Inutilizavel agora!
@@ -53,4 +63,9 @@ urlpatterns = [
             path('certificado/', certificado, name='url_certificado'),
         # Cracha e outros
             path('cracha/', gerarCracha, name='url_cracha'),
+        
+        path('procura', procura, name='url_procurar'),
+
 ]
+
+urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

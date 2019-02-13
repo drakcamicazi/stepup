@@ -85,7 +85,7 @@
                 <div class="app-brand demo mt-1">
 
                     <img src="{% static 'img/ifro-logo.png' %}" width="40px" height="40px" style="border-radius:50%">
-                    <a href="index.html" class="app-brand-text demo sidenav-text font-weight-normal">IFRO</a>
+                    <a class="app-brand-text demo sidenav-text font-weight-normal">IFRO</a>
                     <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
                         <i class="ion ion-md-menu align-middle"></i>
                     </a>
@@ -102,19 +102,25 @@
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="{% url 'url_campus' %}" class="sidenav-link">
-                            <i class="sidenav-icon ion ion-md-pin"></i>
-                            <div>Campus</div>
-                        </a>
-                    </li>
-                    <li class="sidenav-item">
                         <a href="{% url 'url_servidores' %}" class="sidenav-link">
                             <i class="sidenav-icon ion ion-md-contact"></i>
                             <div>Servidores</div>
                         </a>
                     </li>
                     <li class="sidenav-item">
-                        <a href="{% url 'url_loginadmin' %}" class="sidenav-link">
+                        <a href="{% url 'url_departamentos' %}" class="sidenav-link">
+                            <i class="sidenav-icon ion ion-md-filing"></i>
+                            <div>Departamentos</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="{% url 'url_campus' %}" class="sidenav-link">
+                            <i class="sidenav-icon ion ion-md-pin"></i>
+                            <div>Campus</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="{% url 'url_deslogaradmin' %}" class="sidenav-link">
                             <i class="sidenav-icon ion ion-md-arrow-round-back"></i>
                             <div>Deslogar</div>
                         </a>
@@ -151,7 +157,7 @@
                         <hr class="d-lg-none w-100 my-2">
 
                         <div class="navbar-nav align-items-lg-center ml-auto">
-                            <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
+                            <!-- <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown">
                                     <i class="ion ion-md-notifications-outline navbar-icon align-middle"></i>
                                     <span class="badge badge-primary badge-dot indicator"></span>
@@ -273,18 +279,18 @@
                                     <a href="javascript:void(0)" class="d-block text-center text-light small p-2 my-1">Mostrar
                                         todas mensagens</a>
                                 </div>
-                            </div>
+                            </div> 
 
-                            <!-- Divider -->
+                            
                             <div class="nav-item d-none d-lg-block text-big font-weight-light line-height-1 opacity-25 mr-3 ml-1">
                                 |
-                            </div>
+                            </div>-->
 
                             <div class="demo-navbar-user nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
                                         <img src="{% static 'img/avatars/1.png' %}" alt class="d-block ui-w-30 rounded-circle">
-                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">Mike Greene</span>
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">{% block nome %} {% endblock %}</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -293,7 +299,7 @@
                                     <a href="javascript:void(0)" class="dropdown-item">
                                         <i class="ion ion-md-settings text-lightest"></i> &nbsp; Configurações</a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item">
+                                    <a href="{% url 'url_deslogaradmin' %}" class="dropdown-item">
                                         <i class="ion ion-ios-log-out text-danger"></i> &nbsp; Deslogar</a>
                                 </div>
                             </div>

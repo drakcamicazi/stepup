@@ -289,17 +289,17 @@
                             <div class="demo-navbar-user nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
                                     <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
-                                        <img src="{% static 'img/avatars/1.png' %}" alt class="d-block ui-w-30 rounded-circle">
-                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">{% block nome %} {% endblock %}</span>
+                                        {% block nome %}
+                                        {% endblock %}
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="javascript:void(0)" class="dropdown-item">
+                                    <a href="{% url 'url_perfil' %}" class="dropdown-item">
                                         <i class="ion ion-ios-person text-lightest"></i> &nbsp; Meu perfil</a>
-                                    <a href="javascript:void(0)" class="dropdown-item">
-                                        <i class="ion ion-md-settings text-lightest"></i> &nbsp; Configurações</a>
+                                    <!-- <a href="javascript:void(0)" class="dropdown-item">
+                                        <i class="ion ion-md-settings text-lightest"></i> &nbsp; Configurações</a> -->
                                     <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item">
+                                    <a href="{% url 'url_deslogar' %}" class="dropdown-item">
                                         <i class="ion ion-ios-log-out text-danger"></i> &nbsp; Deslogar</a>
                                 </div>
                             </div>
@@ -362,10 +362,12 @@
     <!-- Libs -->
     <script src="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
     <script src="{% static 'vendor/libs/chartjs/chartjs.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue">
+    </script>
 
     <!-- Demo -->
-    <script src="{% static 'js/demo.js' %}"></script>
-    <script src="{% static 'js/dashboards_dashboard-1.js' %}"></script>
+    <script src="{% static 'js/demo.js' %}">
+    </script>
 </body>
 
 </html>
